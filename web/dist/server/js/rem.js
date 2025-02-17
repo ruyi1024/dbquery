@@ -1,0 +1,1 @@
+$(function(){var n=100/1920,r=window.innerHeight,i=window.innerWidth,w=i*n;$("html").css("font-size",w+"px")}),$(window).resize(function(){var n=100/1920,r=window.innerHeight,i=window.innerWidth,w=i*n;$("html").css("font-size",w+"px")});

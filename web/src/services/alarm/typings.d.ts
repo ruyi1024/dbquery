@@ -1,0 +1,4 @@
+
+declare namespace API {
+
+}
