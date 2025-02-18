@@ -6,7 +6,7 @@ export default {
   'menu.datasource.env': '环境配置',
   'menu.datasource.datasource_type': '数据源类型',
   'menu.datasource.datasource': '数据源配置',
-  'menu.execute': '数据查询',
+  'menu.execute': 'SQL查询',
   'menu.privilege': '权限',
   'menu.audit': '审计',
   'menu.monitor.event': '监控事件和图表',

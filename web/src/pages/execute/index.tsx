@@ -19,6 +19,12 @@ import { format } from 'sql-formatter'
 import 'ace-builds/src-noconflict/mode-sql'
 import { Ace } from 'ace-builds';
 
+//导出excel
+import * as Exceljs from 'exceljs';
+import { Workbook } from 'exceljs';
+import { saveAs } from 'file-saver';
+
+
 const favoriteColumns: ProColumns[] = [
   {
     title: '收藏时间',
@@ -352,6 +358,79 @@ const Index: React.FC = () => {
       });
   }
 
+  //导出excel模块
+  const generateHeaders = (columns: any) => {
+    return columns.map((col: { title: any; dataIndex: any; width: number; }) => {
+      const obj: ITableHeaer = {
+        header: col.title,
+        key: col.dataIndex,
+        width: col.width / 5 || 20,
+      }
+      return obj;
+    }
+    )
+  }
+  const saveWorkBook = (workbook: Workbook, fileName: string) => {
+    workbook.xlsx.writeBuffer().then((data: BlobPart) => {
+      const blob = new Blob([data], { type: '' });
+      saveAs(blob, fileName);
+    })
+  }
+  const exportExcel = () => {
+    //创建工作簿
+    const workbook = new Exceljs.Workbook();
+    //添加sheet
+    const worksheet = workbook.addWorksheet("数据结果");
+    //设置sheet默认行高
+    worksheet.properties.defaultRowHeight = 20;
+    //设置列
+    worksheet.columns = generateHeaders(tableDataColumn);
+    //添加行
+    let rows = worksheet.addRows(tableDataList);
+    //设置字体和对齐方式
+    rows?.forEach(row => {
+      row.font = {
+        size: 11,
+        name: '宋体',
+      }
+      row.alignment = { vertical: 'middle', 'horizontal': 'left', wrapText: false };
+    })
+    //设置首行样式
+    let headerRow = worksheet.getRow(1);
+    headerRow.eachCell((cell, _colNum) => {
+      //设置背景
+      cell.fill = {
+        type: 'pattern',
+        pattern: 'solid',
+        fgColor: { argb: '0099CC' }
+      }
+      //设置字体
+      cell.font = {
+        bold: true,
+        italic: false,
+        size: 11,
+        name: '宋体',
+        color: { argb: 'FFFFFF' }
+      }
+      //设置对齐
+      cell.alignment = { vertical: 'middle', 'horizontal': 'center', wrapText: false };
+    })
+
+    //生成文件名
+    const date = new Date();
+    const year = date.getFullYear().toString();
+    const month = (date.getMonth() + 1).toString();
+    const day = date.getDate().toString();
+    const hour = date.getHours().toString();
+    const minute = date.getMinutes().toString();
+    const second = date.getSeconds().toString();
+    const exportFileName = type + "-" + year + month + day + hour + minute + second + '.xlsx'
+    //导出文件
+    saveWorkBook(workbook, exportFileName)
+    //记录日志
+    writeLog("exportExcel");
+
+  }
 
   //前端调用记录日志方法
   const writeLog = (doType: string) => {
@@ -374,6 +453,13 @@ const Index: React.FC = () => {
         return false;
       });
   }
+
+  //阻止copy
+  const handleCopy = (event: React.ClipboardEvent<HTMLDivElement>) => {
+    message.warning("数据复制已被记录，请注意数据安全");
+    writeLog("copyData");
+    //event.preventDefault();
+  };
 
 
 
@@ -609,7 +695,7 @@ const Index: React.FC = () => {
               }
               {tableDataSuccess == true && tableDataTotal >= 0 &&
                 <div style={{ whiteSpace: 'pre-wrap', marginTop: '10px' }} onCopy={(e) => handleCopy(e)}>
-                  <div style={{ width: '100%', float: 'right', marginBottom: '10px' }}>{"查询到" + tableDataTotal + "条数据"} </div>
+                  <div style={{ width: '100%', float: 'right', marginBottom: '10px' }}>{"查询到" + tableDataTotal + "条数据"} <Button icon={<RightSquareOutlined />} onClick={exportExcel}>查询结果导出Excel</Button></div>
                   <Table
                     bordered
                     loading={loading}
@@ -642,7 +728,6 @@ const Index: React.FC = () => {
 
         </Drawer>
 
-  
     </PageContainer>
   );
 };

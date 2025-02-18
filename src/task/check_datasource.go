@@ -27,9 +27,7 @@ import (
 	"dbmcloud/src/libary/oracle"
 	"dbmcloud/src/libary/postgres"
 	"dbmcloud/src/libary/redis"
-	"dbmcloud/src/libary/tool"
 	"dbmcloud/src/model"
-	"dbmcloud/src/mq"
 	"dbmcloud/src/utils"
 	"fmt"
 	"time"
@@ -167,40 +165,5 @@ func checkConnectionTask(datasourceType, env, host, port, user, pass, dbid strin
 	record.Status = status
 	record.StatusText = statusText
 	db.Model(&record).Select("status", "status_text").Omit("id").Where("host=?", host).Where("port=?", port).Updates(&record)
-
-	//数据源监测事件
-	eventEntity := fmt.Sprintf("%s:%s", host, port)
-	eventType := datasourceType
-	eventGroup := env
-	detail := make([]map[string]interface{}, 0)
-	detail = append(detail, map[string]interface{}{"Error": statusText})
-	events := make([]map[string]interface{}, 0)
-	event := map[string]interface{}{
-		"event_uuid":   tool.GetUUID(),
-		"event_time":   tool.GetNowTime(),
-		"event_type":   eventType,
-		"event_group":  eventGroup,
-		"event_entity": eventEntity,
-		"event_key":    "datasourceCheck",
-		"event_value":  utils.IntToDecimal(int(status)),
-		"event_tag":    "",
-		"event_unit":   "",
-		"event_detail": utils.MapToStr(detail),
-	}
-	events = append(events, event)
-
-	// write events to ck
-	result := database.CK.Model(&model.Event{}).Create(events)
-	if result.Error != nil {
-		fmt.Println("Insert Event To Clickhouse Error: " + result.Error.Error())
-		log.Logger.Error(fmt.Sprintf("Can't add events data to clickhouse: %s", result.Error.Error()))
-		return
-	}
-
-	//send event to nsq
-	//fmt.Println(events)
-	for _, event := range events {
-		mq.Send(event)
-	}
 
 }

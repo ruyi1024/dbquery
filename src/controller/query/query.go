@@ -1,4 +1,4 @@
-/*
+``/*
 Copyright 2014-2022 The Lepus Team Group, website: https://www.lepus.cc
 Licensed under the GNU General Public License, Version 3.0 (the "GPLv3 License");
 You may not use this file except in compliance with the License.
@@ -101,13 +101,7 @@ func DoQuery(c *gin.Context) {
 		findSqlType := regexp.MustCompile(`^\s*(?s:(.*?)) `).FindAllStringSubmatch(sql, -1)
 		sqlType = strings.ToLower(findSqlType[0][1])
 
-		//高危命令拦截
-		r1, _ := regexp.MatchString(`.*(?i)drop\s+|.*(?i)truncate\s+|.*(?i)rename\s+|.*(?i)shutdown\s+`, sql)
-		if r1 {
-			WriteLog(username.(string), datasourceType, datasource, queryType, sqlType, databaseName, intercept, 0, sql, "存在高风险命令.")
-			c.JSON(http.StatusOK, gin.H{"success": false, "msg": "存在高风险命令."})
-			return
-		}
+		00
 
 		//判断查询需要limit限制
 		matchLimit, _ := regexp.MatchString(`\s+(?i)limit\s+`, sql)
