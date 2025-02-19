@@ -1,24 +1,24 @@
-import React, {useEffect, useRef, useState} from 'react';
-import {PageContainer} from '@ant-design/pro-layout';
-import {Button, Card, Col, Divider, Input, message, Popconfirm, Row, Space, Table, Tag, Tooltip} from 'antd';
-import type {UserListData, UserListItem} from './data';
-import {queryUser, updateUser,removeUser} from './service';
-import {PlusOutlined, ReloadOutlined} from '@ant-design/icons';
+import React, { useEffect, useRef, useState } from 'react';
+import { PageContainer } from '@ant-design/pro-layout';
+import { Button, Card, Col, Divider, Input, message, Popconfirm, Row, Space, Table, Tag, Tooltip } from 'antd';
+import type { UserListData, UserListItem } from './data';
+import { queryUser, updateUser, removeUser } from './service';
+import { PlusOutlined, ReloadOutlined } from '@ant-design/icons';
 import moment from 'moment';
 import UsersForm from './components/UserForm';
-import {ActionType} from "@ant-design/pro-table";
-import { useAccess } from 'umi';
+import { ActionType } from "@ant-design/pro-table";
+import { useAccess, FormattedMessage } from 'umi';
 
 const { Search } = Input;
 const handleSearchKeyword = async (val: string) => {
   console.log('search val:', val);
 };
 
-const query = async (params: string) =>{
+const query = async (params: string) => {
   try {
     return await queryUser(params);
   } catch (e) {
-    return {success: false, msg: e}
+    return { success: false, msg: e }
   }
 }
 
@@ -31,14 +31,14 @@ const handleUpdate = async (fields: UserListItem) => {
 
   const hide = message.loading('正在配置');
   try {
-    const res = await updateUser({...fields});
+    const res = await updateUser({ ...fields });
     hide();
     message.success('配置成功');
     return res;
   } catch (error) {
     hide();
     message.error('配置失败请重试！');
-    return {success: false, msg: error}
+    return { success: false, msg: error }
   }
 };
 
@@ -77,7 +77,7 @@ const UserManager: React.FC = () => {
 
   const did = (params: any) => {
     setLoading(true);
-    const data  = {
+    const data = {
       offset: pageSize * (currentPage >= 2 ? currentPage - 1 : 0),
       limit: pageSize,
       keyword: params && params.keyword ? params.keyword : keyword,
@@ -109,22 +109,22 @@ const UserManager: React.FC = () => {
       title: '管理员',
       dataIndex: 'admin',
       sorter: true,
-      render: (text: boolean) => <Tag color={text ? 'green' : '' }>{text ? '是' : '否'}</Tag>,
+      render: (text: boolean) => <Tag color={text ? 'green' : ''}>{text ? '是' : '否'}</Tag>,
     },
     {
-      title: '创建时间',
+      title: <FormattedMessage id="pages.searchTable.column.gmtCreated" />,
       dataIndex: 'createdAt',
       sorter: true,
       render: (text: string) => moment(text).format('YYYY-MM-DD HH:mm:ss'),
     },
     {
-      title: '修改时间',
+      title: <FormattedMessage id="pages.searchTable.column.gmtUpdated" />,
       dataIndex: 'updatedAt',
       sorter: true,
       render: (text: string) => moment(text).format('YYYY-MM-DD HH:mm:ss'),
     },
     {
-      title: '操作',
+      title: <FormattedMessage id="pages.searchTable.column.operate" />,
       dataIndex: 'id',
       key: 'id',
       fixed: 'right',
@@ -136,15 +136,15 @@ const UserManager: React.FC = () => {
               <a onClick={() => {
                 console.log("debug ---> ", record)
                 handleUpdateModalVisible(true);
-                setCurrentRow({...record, modify: true});
-              }}>修改</a>
+                setCurrentRow({ ...record, modify: true });
+              }}><FormattedMessage id="pages.searchTable.operate.edit" /></a>
             </Tooltip>
             <Tooltip title={`删除用户【${record.username}】`}>
               <Popconfirm
                 title={`删除【${record.username}】，删除后数据不可恢复。是否继续？`}
                 placement="left"
-                onConfirm={async ()=>{
-                  if (!access.canAdmin) {message.error('操作权限受限，请联系平台管理员');return}
+                onConfirm={async () => {
+                  if (!access.canAdmin) { message.error('操作权限受限，请联系平台管理员'); return }
                   const success = await handleRemove(record.username);
                   if (success) {
                     if (actionRef.current) {
@@ -153,7 +153,7 @@ const UserManager: React.FC = () => {
                   }
                 }}
               >
-                <a>删除</a>
+                <a><FormattedMessage id="pages.searchTable.operate.delete" /></a>
               </Popconfirm>
             </Tooltip>
           </Space>
@@ -191,11 +191,11 @@ const UserManager: React.FC = () => {
         <Row>
           <Col flex="auto">
             <Search
-              placeholder="支持搜索账号、姓名"
+              placeholder={<FormattedMessage id="pages.searchTable.operate.searchUser" />}
               onSearch={(val) => {
                 console.log("debug on search --> ", val)
                 setKeyword(val);
-                did({keyword: val});
+                did({ keyword: val });
               }}
               style={{ width: 280 }}
             />
@@ -208,8 +208,8 @@ const UserManager: React.FC = () => {
             </Tooltip>
           </Col>
           <Col span={2}>
-            <Button type="link" icon={<PlusOutlined />} onClick={()=> handleUpdateModalVisible(true)}>
-              新增用户
+            <Button type="link" icon={<PlusOutlined />} onClick={() => handleUpdateModalVisible(true)}>
+              <FormattedMessage id="pages.searchTable.operate.create" />
             </Button>
           </Col>
         </Row>
@@ -236,7 +236,7 @@ const UserManager: React.FC = () => {
 
       <UsersForm
         onSubmit={async (value) => {
-          if (!access.canAdmin) {message.error('操作权限受限，请联系平台管理员');return}
+          if (!access.canAdmin) { message.error('操作权限受限，请联系平台管理员'); return }
           const res = await handleUpdate(value);
           if (res.success) {
             did('');

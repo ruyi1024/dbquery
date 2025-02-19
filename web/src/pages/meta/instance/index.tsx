@@ -3,7 +3,7 @@ import { PageContainer } from '@ant-design/pro-layout';
 import ProTable, { ProColumns, ActionType } from '@ant-design/pro-table';
 import { TableListItem } from './data.d';
 import { queryInstance } from './service';
-
+import { useAccess, FormattedMessage } from 'umi';
 
 const TableList: React.FC<{}> = () => {
 
@@ -11,47 +11,47 @@ const TableList: React.FC<{}> = () => {
 
   const columns: ProColumns<TableListItem>[] = [
     {
-      title: '实例类型',
+      title: <FormattedMessage id="pages.searchTable.column.type" />,
       dataIndex: 'type',
       sorter: true,
     },
     {
-      title: '实例名',
+      title: <FormattedMessage id="pages.searchTable.column.name" />,
       dataIndex: 'name',
       sorter: true,
     },
     {
-      title: '实例主机',
+      title: <FormattedMessage id="pages.searchTable.column.host" />,
       dataIndex: 'host',
       sorter: true,
     },
     {
-      title: '实例端口',
+      title: <FormattedMessage id="pages.searchTable.column.port" />,
       dataIndex: 'port',
     },
     {
-      title: '角色',
+      title: <FormattedMessage id="pages.searchTable.column.role" />,
       dataIndex: 'role',
       filters: true,
       onFilter: true,
       valueEnum: {
-        1: { text: '主' },
-        2: { text: '备' },
+        1: { text: <FormattedMessage id="pages.searchTable.column.master" /> },
+        2: { text: <FormattedMessage id="pages.searchTable.column.slave" /> },
       },
     },
 
     {
-      title: '是否启用',
+      title: <FormattedMessage id="pages.searchTable.column.enable" />,
       dataIndex: 'enable',
       filters: true,
       onFilter: true,
       valueEnum: {
-        0: { text: '否', status: 'Default' },
-        1: { text: '是', status: 'Success' },
+        0: { text: <FormattedMessage id="pages.searchTable.column.no" />, status: 'Default' },
+        1: { text: <FormattedMessage id="pages.searchTable.column.yes" />, status: 'Success' },
       },
     },
     {
-      title: '创建时间',
+      title: <FormattedMessage id="pages.searchTable.column.gmtCreated" />,
       dataIndex: 'gmt_created',
       sorter: true,
       valueType: 'dateTime',
@@ -59,7 +59,7 @@ const TableList: React.FC<{}> = () => {
       search: false,
     },
     {
-      title: '修改时间',
+      title: <FormattedMessage id="pages.searchTable.column.gmtUpdated" />,
       dataIndex: 'gmt_updated',
       sorter: true,
       valueType: 'dateTime',
@@ -72,7 +72,7 @@ const TableList: React.FC<{}> = () => {
   return (
     <PageContainer>
       <ProTable<TableListItem>
-        headerTitle="数据库实例列表"
+        headerTitle={<FormattedMessage id="pages.searchTable.datalist" />}
         actionRef={actionRef}
         rowKey="id"
         search={{

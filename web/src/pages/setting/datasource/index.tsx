@@ -7,7 +7,7 @@ import CreateForm from './components/CreateForm';
 import UpdateForm from './components/UpdateForm';
 import { TableListItem } from './data.d';
 import { query, update, add, remove, check } from './service';
-import { useAccess } from 'umi';
+import { useAccess, FormattedMessage } from 'umi';
 
 const tableProps = {
   layout: 'horizontal',
@@ -175,7 +175,7 @@ const TableList: React.FC<{}> = () => {
 
   const columns: ProColumns<TableListItem>[] = [
     {
-      title: '数据源',
+      title: <FormattedMessage id="pages.searchTable.column.datasource" />,
       dataIndex: 'name',
       initialValue: formValues.name,
       sorter: true,
@@ -183,13 +183,13 @@ const TableList: React.FC<{}> = () => {
         rules: [
           {
             required: true,
-            message: '此项为必填项',
+            message: <FormattedMessage id="pages.searchTable.form.requireItem" />,
           },
         ],
       },
     },
     {
-      title: '类型',
+      title: <FormattedMessage id="pages.searchTable.column.type" />,
       dataIndex: 'type',
       initialValue: formValues.type,
       filters: true,
@@ -199,7 +199,7 @@ const TableList: React.FC<{}> = () => {
         rules: [
           {
             required: true,
-            message: '此项为必填项',
+            message: <FormattedMessage id="pages.searchTable.form.requireItem" />,
           },
         ],
       },
@@ -218,40 +218,40 @@ const TableList: React.FC<{}> = () => {
       valueEnum: typeEnum,
     },
     {
-      title: '主机',
+      title: <FormattedMessage id="pages.searchTable.column.host" />,
       dataIndex: 'host',
       initialValue: formValues.host,
       formItemProps: {
         rules: [
           {
             required: true,
-            message: '此项为必填项',
+            message: <FormattedMessage id="pages.searchTable.form.requireItem" />,
           },
         ],
       },
     },
     {
-      title: '端口',
+      title: <FormattedMessage id="pages.searchTable.column.port" />,
       dataIndex: 'port',
       initialValue: formValues.port,
       formItemProps: {
         rules: [
           {
             required: true,
-            message: '此项为必填项',
+            message: <FormattedMessage id="pages.searchTable.form.requireItem" />,
           },
         ],
       },
     },
     {
-      title: '用户',
+      title: <FormattedMessage id="pages.searchTable.column.user" />,
       dataIndex: 'user',
       hideInTable: true,
       hideInSearch: true,
       initialValue: formValues.user,
     },
     {
-      title: '密码',
+      title: <FormattedMessage id="pages.searchTable.column.password" />,
       dataIndex: 'pass',
       hideInTable: true,
       hideInSearch: true,
@@ -266,14 +266,14 @@ const TableList: React.FC<{}> = () => {
       initialValue: formValues.dbid,
     },
     {
-      title: '机房',
+      title: <FormattedMessage id="pages.searchTable.column.idc" />,
       dataIndex: 'idc',
       initialValue: formValues.idc,
       formItemProps: {
         rules: [
           {
             required: true,
-            message: '此项为必填项',
+            message: <FormattedMessage id="pages.searchTable.form.requireItem" />,
           },
         ],
       },
@@ -292,14 +292,14 @@ const TableList: React.FC<{}> = () => {
       valueEnum: idcEnum,
     },
     {
-      title: '环境',
+      title: <FormattedMessage id="pages.searchTable.column.env" />,
       dataIndex: 'env',
       initialValue: formValues.env,
       formItemProps: {
         rules: [
           {
             required: true,
-            message: '此项为必填项',
+            message: <FormattedMessage id="pages.searchTable.form.requireItem" />,
           },
         ],
       },
@@ -319,7 +319,7 @@ const TableList: React.FC<{}> = () => {
     },
 
     {
-      title: '启用',
+      title: <FormattedMessage id="pages.searchTable.column.enable" />,
       dataIndex: 'enable',
       filters: false,
       onFilter: false,
@@ -333,7 +333,7 @@ const TableList: React.FC<{}> = () => {
         rules: [
           {
             required: true,
-            message: '此项为必填项',
+            message: <FormattedMessage id="pages.searchTable.form.requireItem" />,
           },
         ],
       },
@@ -352,7 +352,7 @@ const TableList: React.FC<{}> = () => {
     },
 
     {
-      title: '查询',
+      title: <FormattedMessage id="pages.searchTable.column.execute_enable" />,
       dataIndex: 'execute_enable',
       filters: false,
       onFilter: false,
@@ -366,7 +366,7 @@ const TableList: React.FC<{}> = () => {
         rules: [
           {
             required: true,
-            message: '此项为必填项',
+            message: <FormattedMessage id="pages.searchTable.form.requireItem" />,
           },
         ],
       },
@@ -374,10 +374,10 @@ const TableList: React.FC<{}> = () => {
         return (
           <Select>
             <Option key={0} value={0}>
-              否
+              <FormattedMessage id="pages.searchTable.column.no" />
             </Option>
             <Option key={1} value={1}>
-              是
+              <FormattedMessage id="pages.searchTable.column.yes" />
             </Option>
           </Select>
         );
@@ -386,7 +386,7 @@ const TableList: React.FC<{}> = () => {
 
 
     {
-      title: '元数据',
+      title: <FormattedMessage id="pages.searchTable.column.dbmeta_enable" />,
       dataIndex: 'dbmeta_enable',
       filters: false,
       onFilter: false,
@@ -400,7 +400,7 @@ const TableList: React.FC<{}> = () => {
         rules: [
           {
             required: true,
-            message: '此项为必填项',
+            message: <FormattedMessage id="pages.searchTable.form.requireItem" />,
           },
         ],
       },
@@ -408,117 +408,19 @@ const TableList: React.FC<{}> = () => {
         return (
           <Select>
             <Option key={0} value={0}>
-              否
+              <FormattedMessage id="pages.searchTable.column.no" />
             </Option>
             <Option key={1} value={1}>
-              是
+              <FormattedMessage id="pages.searchTable.column.yes" />
             </Option>
           </Select>
         );
       },
     },
 
-    {
-      title: '探敏',
-      dataIndex: 'sensitive_enable',
-      filters: false,
-      onFilter: false,
-      valueEnum: {
-        0: { text: '', status: 'Default' },
-        1: { text: '', status: 'Success' },
-      },
-      sorter: false,
-      initialValue: formValues.sensitive_enable,
-      formItemProps: {
-        rules: [
-          {
-            required: true,
-            message: '此项为必填项',
-          },
-        ],
-      },
-      renderFormItem: (_, { type, defaultRender, ...rest }, form) => {
-        return (
-          <Select>
-            <Option key={0} value={0}>
-              否
-            </Option>
-            <Option key={1} value={1}>
-              是
-            </Option>
-          </Select>
-        );
-      },
-    },
 
     {
-      title: '监控',
-      dataIndex: 'monitor_enable',
-      filters: false,
-      onFilter: false,
-      valueEnum: {
-        0: { text: '', status: 'Default' },
-        1: { text: '', status: 'Success' },
-      },
-      sorter: false,
-      initialValue: formValues.monitor_enable,
-      formItemProps: {
-        rules: [
-          {
-            required: true,
-            message: '此项为必填项',
-          },
-        ],
-      },
-      renderFormItem: (_, { type, defaultRender, ...rest }, form) => {
-        return (
-          <Select>
-            <Option key={0} value={0}>
-              否
-            </Option>
-            <Option key={1} value={1}>
-              是
-            </Option>
-          </Select>
-        );
-      },
-    },
-
-    {
-      title: '告警',
-      dataIndex: 'alarm_enable',
-      filters: false,
-      onFilter: false,
-      valueEnum: {
-        0: { text: '', status: 'Default' },
-        1: { text: '', status: 'Success' },
-      },
-      sorter: false,
-      initialValue: formValues.alarm_enable,
-      formItemProps: {
-        rules: [
-          {
-            required: true,
-            message: '此项为必填项',
-          },
-        ],
-      },
-      renderFormItem: (_, { type, defaultRender, ...rest }, form) => {
-        return (
-          <Select>
-            <Option key={0} value={0}>
-              否
-            </Option>
-            <Option key={1} value={1}>
-              是
-            </Option>
-          </Select>
-        );
-      },
-    },
-
-    {
-      title: '状态',
+      title: <FormattedMessage id="pages.searchTable.column.status" />,
       dataIndex: 'status',
       filters: true,
       onFilter: true,
@@ -533,7 +435,7 @@ const TableList: React.FC<{}> = () => {
 
     },
     {
-      title: '创建时间',
+      title: <FormattedMessage id="pages.searchTable.column.gmtCreated" />,
       dataIndex: 'gmt_created',
       sorter: false,
       valueType: 'dateTime',
@@ -542,7 +444,7 @@ const TableList: React.FC<{}> = () => {
       hideInSearch: true,
     },
     {
-      title: '修改时间',
+      title: <FormattedMessage id="pages.searchTable.column.gmtUpdated" />,
       dataIndex: 'gmt_updated',
       sorter: false,
       valueType: 'dateTime',
@@ -551,7 +453,7 @@ const TableList: React.FC<{}> = () => {
       hideInSearch: true,
     },
     {
-      title: '操作',
+      title: <FormattedMessage id="pages.searchTable.column.operate" />,
       dataIndex: 'option',
       valueType: 'option',
       render: (_, record) => (
@@ -562,8 +464,7 @@ const TableList: React.FC<{}> = () => {
               setFormValues(record);
             }}
           >
-            <FormOutlined />
-            修改
+            <FormOutlined /><FormattedMessage id="pages.searchTable.operate.edit" />
           </a>
           <Divider type="vertical" />
           <Popconfirm
@@ -583,8 +484,7 @@ const TableList: React.FC<{}> = () => {
             }}
           >
             <a>
-              <DeleteOutlined />
-              删除
+              <DeleteOutlined /><FormattedMessage id="pages.searchTable.operate.delete" />
             </a>
           </Popconfirm>
         </>
@@ -596,7 +496,7 @@ const TableList: React.FC<{}> = () => {
     <PageContainer>
       <ProTable<TableListItem>
         {...tableProps}
-        headerTitle="数据列表"
+        headerTitle={<FormattedMessage id="pages.searchTable.datalist" />}
         actionRef={actionRef}
         rowKey="id"
         search={{
@@ -610,7 +510,8 @@ const TableList: React.FC<{}> = () => {
               setFormValues(formInitValue);
             }}
           >
-            <PlusOutlined /> 新建
+            <PlusOutlined />
+            <FormattedMessage id="pages.searchTable.operate.create" />
           </Button>,
         ]}
         request={(params, sorter, filter) => query({ ...params, sorter, filter })}

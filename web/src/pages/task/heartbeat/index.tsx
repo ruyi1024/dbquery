@@ -5,7 +5,7 @@ import { PageContainer } from '@ant-design/pro-layout';
 import ProTable, { ProColumns, ActionType } from '@ant-design/pro-table';
 import { TableListItem } from './data.d';
 import { query } from './service';
-import { useAccess } from 'umi';
+import { useAccess, FormattedMessage } from 'umi';
 
 const TableList: React.FC<{}> = () => {
   const actionRef = useRef<ActionType>();
@@ -31,14 +31,14 @@ const TableList: React.FC<{}> = () => {
       search: false,
     },
     {
-      title: '创建时间',
+      title: <FormattedMessage id="pages.searchTable.column.gmtCreated" />,
       dataIndex: 'gmt_created',
       sorter: true,
       valueType: 'dateTime',
       search: false,
     },
     {
-      title: '修改时间',
+      title: <FormattedMessage id="pages.searchTable.column.gmtUpdated" />,
       dataIndex: 'gmt_updated',
       sorter: true,
       valueType: 'dateTime',
@@ -50,7 +50,7 @@ const TableList: React.FC<{}> = () => {
   return (
     <PageContainer>
       <ProTable<TableListItem>
-        headerTitle="数据列表"
+        headerTitle={<FormattedMessage id="pages.searchTable.datalist" />}
         actionRef={actionRef}
         rowKey="id"
         request={(params, sorter, filter) => query({ ...params, sorter, filter })}

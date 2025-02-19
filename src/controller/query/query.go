@@ -1,4 +1,4 @@
-``/*
+/*
 Copyright 2014-2022 The Lepus Team Group, website: https://www.lepus.cc
 Licensed under the GNU General Public License, Version 3.0 (the "GPLv3 License");
 You may not use this file except in compliance with the License.
@@ -78,17 +78,11 @@ func DoQuery(c *gin.Context) {
 	username, _ := c.Get("username")
 
 	var (
-		queryTableList []string
-		sqlType        string
-		backupName     string
+		sqlType string
 	)
 
 	//执行SQL规则检查
 	if queryType == "execute" && (datasourceType == "MySQL" || datasourceType == "TiDB" || datasourceType == "Doris" || datasourceType == "MariaDB" || datasourceType == "GreatSQL" || datasourceType == "PostgreSQL" || datasourceType == "Oracle" || datasourceType == "ClickHouse") {
-		var (
-			queryTable     string
-			findQueryTable [][]string
-		)
 		//语句合法性检查
 		r, err := regexp.MatchString("^(?i)select |^(?i)insert |^(?i)update |^(?i)delete |^(?i)create |^(?i)alter |^(?i)drop |^(?i)truncate |^(?i)rename ", sql)
 		if err != nil || !r {
@@ -101,75 +95,8 @@ func DoQuery(c *gin.Context) {
 		findSqlType := regexp.MustCompile(`^\s*(?s:(.*?)) `).FindAllStringSubmatch(sql, -1)
 		sqlType = strings.ToLower(findSqlType[0][1])
 
-		00
-
-		//判断查询需要limit限制
-		matchLimit, _ := regexp.MatchString(`\s+(?i)limit\s+`, sql)
-		if sqlType == "select" && !matchLimit && (datasourceType == "MySQL" || datasourceType == "TiDB" || datasourceType == "PostgreSQL" || datasourceType == "Doris" || datasourceType == "ClickHouse") {
-			WriteLog(username.(string), datasourceType, datasource, queryType, sqlType, databaseName, intercept, 0, sql, "数据查询请使用limit限制行数.")
-			c.JSON(http.StatusOK, gin.H{"success": false, "msg": "数据查询请使用limit限制行数."})
-			return
-		}
-		if (sqlType == "update" || sqlType == "delete") && !matchLimit && (datasourceType == "MySQL" || datasourceType == "TiDB") {
-			WriteLog(username.(string), datasourceType, datasource, queryType, sqlType, databaseName, intercept, 0, sql, "数据变更请使用limit限制行数.")
-			c.JSON(http.StatusOK, gin.H{"success": false, "msg": "数据变更请使用limit限制行数."})
-			return
-		}
-		matchRownum, _ := regexp.MatchString(`\s+(?i)rownum\s*<`, sql)
-		if (sqlType == "select" || sqlType == "update" || sqlType == "delete") && !matchRownum && (datasourceType == "Oracle") {
-			WriteLog(username.(string), datasourceType, datasource, queryType, sqlType, databaseName, intercept, 0, sql, "数据操作请使用rownum限制行数.")
-			c.JSON(http.StatusOK, gin.H{"success": false, "msg": "数据操作请使用rownum限制行数."})
-			return
-		}
-
-		//update/delete需要where条件
-		matchWhere, _ := regexp.MatchString(`\s+(?i)where\s+`, sql)
-		if (sqlType == "update" || sqlType == "delete") && !matchWhere {
-			WriteLog(username.(string), datasourceType, datasource, queryType, sqlType, databaseName, intercept, 0, sql, "数据修改删除必须使用where条件.")
-			c.JSON(http.StatusOK, gin.H{"success": false, "msg": "数据修改删除必须使用where条件."})
-			return
-		}
-
-		//提取limit行数
-		var queryNumber int
-		findQueryNumber := regexp.MustCompile(`(?i)limit\s+(?s:(.\d*))\s*|(?i)rownum\s*<\s*(?s:(.\d*))\s*`).FindAllStringSubmatch(sql, -1)
-		if len(findQueryNumber) > 0 {
-			queryNumber = utils.StrToInt(findQueryNumber[0][1])
-			if queryNumber > 100000 {
-				WriteLog(username.(string), datasourceType, datasource, queryType, sqlType, databaseName, intercept, 0, sql, "limit/rownum最大上限为10万.")
-				c.JSON(http.StatusOK, gin.H{"success": false, "msg": "limit/rownum最大上限为10万."})
-				return
-			}
-		}
-
-		//解析表名
-		if sqlType == "select" {
-			findQueryTable = regexp.MustCompile(`(?i)select.+from\s+(?s:(.*?)) |(?i)join\s+(?s:(.*?)) `).FindAllStringSubmatch(sql, -1)
-		}
-		if sqlType == "insert" {
-			findQueryTable = regexp.MustCompile(`(?i)insert\s+into\s+(?s:(.*?)) `).FindAllStringSubmatch(sql, -1)
-		}
-		if sqlType == "update" {
-			findQueryTable = regexp.MustCompile(`(?i)update\s+(?s:(.*?)) `).FindAllStringSubmatch(sql, -1)
-		}
-		if sqlType == "delete" {
-			findQueryTable = regexp.MustCompile(`(?i)delete\s+from\s+(?s:(.*?)) `).FindAllStringSubmatch(sql, -1)
-		}
-
-		var i = 0
-		for _, item := range findQueryTable {
-			//select join 查询的时候join表通过item[2]获取
-			if i == 0 {
-				queryTable = item[1]
-			} else {
-				queryTable = item[2]
-			}
-			queryTableList = append(queryTableList, queryTable)
-			i++
-		}
-
 	}
-
+	fmt.Println("000000")
 	//查询数据源
 	dbHostPort := strings.Split(datasource, ":")
 	host := dbHostPort[0]
@@ -177,8 +104,6 @@ func DoQuery(c *gin.Context) {
 	userPass, _ := database.QueryAll(fmt.Sprintf("select user,pass,dbid,dml_backup_enable,dml_backup_dir from datasource where host='%s' and port='%s' limit 1 ", host, port))
 	user := userPass[0]["user"].(string)
 	pass := userPass[0]["pass"].(string)
-	dmlBackupEnable := userPass[0]["dml_backup_enable"].(string)
-	dmlBackupDir := userPass[0]["dml_backup_dir"].(string)
 
 	var origPass string
 	if pass != "" {
@@ -189,7 +114,7 @@ func DoQuery(c *gin.Context) {
 			return
 		}
 	}
-
+	fmt.Println("111111111")
 	if datasourceType == "MySQL" || datasourceType == "TiDB" || datasourceType == "Doris" || datasourceType == "MariaDB" || datasourceType == "GreatSQL" || datasourceType == "OceanBase" {
 
 		if queryType == "doExplain" {
@@ -220,6 +145,7 @@ func DoQuery(c *gin.Context) {
 		defer dbCon.Close()
 
 	}
+	fmt.Println("22222")
 	if datasourceType == "Oracle" {
 		sid := userPass[0]["dbid"].(string)
 		dbCon, err = db.Connect(db.WithDriver("godror"), db.WithHost(host), db.WithPort(port), db.WithUsername(user), db.WithPassword(origPass), db.WithSid(sid))
@@ -320,43 +246,23 @@ func DoQuery(c *gin.Context) {
 				WriteLog(username.(string), datasourceType, datasource, queryType, sqlType, databaseName, failed, times, sql, fmt.Sprintf("%s", err))
 				c.JSON(http.StatusOK, gin.H{"success": false, "msg": fmt.Sprintf("%s", err)})
 				return
-			} else {
-				if dmlBackupEnable == "1" && (sqlType == "update" || sqlType == "delete") {
-					WriteLog(username.(string), datasourceType, datasource, queryType, sqlType, databaseName, success, times, sql, fmt.Sprintf("执行完成，影响%d行数据,备份文件:%s/%s", rowsAffected, dmlBackupDir, backupName))
-				} else {
-					WriteLog(username.(string), datasourceType, datasource, queryType, sqlType, databaseName, success, times, sql, fmt.Sprintf("执行完成，影响%d行数据", rowsAffected))
-				}
-				c.JSON(http.StatusOK, gin.H{"success": true, "times": times, "msg": fmt.Sprintf("执行完成，影响%d行数据", rowsAffected)})
-				return
 			}
+			WriteLog(username.(string), datasourceType, datasource, queryType, sqlType, databaseName, success, times, sql, fmt.Sprintf("执行完成，影响%d行数据", rowsAffected))
+			c.JSON(http.StatusOK, gin.H{"success": true, "times": times, "msg": fmt.Sprintf("执行完成，影响%d行数据", rowsAffected)})
+			return
 		}
 
-		//数据查询，使用queryAll方法
+		// Need to add query execution code here for non-DML queries
 		startTime := time.Now().UnixNano() / 1e6
 		columnList, dataList, err := db.QueryAllNew(dbCon, sql)
 		endTime := time.Now().UnixNano() / 1e6
 		times := endTime - startTime
+
 		if err != nil {
 			WriteLog(username.(string), datasourceType, datasource, queryType, sqlType, databaseName, failed, times, sql, fmt.Sprintf("%s", err))
 			c.JSON(http.StatusOK, gin.H{"success": false, "msg": fmt.Sprintf("%s", err)})
 			return
 		}
-
-		//如果使用queryAll方法需要解析column，但是因为datalist的map排序会不稳定，需要使用sort排序
-		/*
-			var columns = make([]map[string]string, 0)
-			if len(dataList) > 0 {
-				//map排序不稳定，转换成数组排序
-				var keys = make([]string, 0)
-				for key, _ := range dataList[0] {
-					keys = append(keys, key)
-				}
-				sort.Strings(keys)
-				for _, key := range keys {
-					columns = append(columns, map[string]string{"title": key, "dataIndex": key})
-				}
-			}
-		*/
 
 		var columns = make([]map[string]string, 0)
 		if len(columnList) > 0 {

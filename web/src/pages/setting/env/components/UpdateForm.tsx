@@ -1,5 +1,6 @@
 import React from 'react';
 import { Modal } from 'antd';
+import { FormattedMessage } from 'umi';
 
 interface UpdateFormProps {
   updateModalVisible: boolean;
@@ -12,7 +13,7 @@ const UpdateForm: React.FC<UpdateFormProps> = (props) => {
   return (
     <Modal
       destroyOnClose
-      title="修改"
+      title={<FormattedMessage id="pages.searchTable.operate.update" />}
       visible={updateModalVisible}
       onCancel={() => onCancel()}
       footer={null}

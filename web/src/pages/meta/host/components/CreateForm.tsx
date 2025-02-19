@@ -1,5 +1,6 @@
 import React from 'react';
 import { Modal } from 'antd';
+import { FormattedMessage } from 'umi';
 
 interface CreateFormProps {
   modalVisible: boolean;

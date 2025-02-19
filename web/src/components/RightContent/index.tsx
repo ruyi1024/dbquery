@@ -1,13 +1,13 @@
-import { Tag, Space, Menu, ConfigProvider } from 'antd';
+import { Tag, Space, Menu, Button } from 'antd';
 import { BgColorsOutlined, QuestionCircleOutlined } from '@ant-design/icons';
 import React from 'react';
-import { useModel, SelectLang } from 'umi';
+import { useModel } from 'umi';
 import Avatar from './AvatarDropdown';
 import HeaderDropdown from '../HeaderDropdown';
 //import HeaderSearch from '../HeaderSearch';
 import FullScreen from '../FullScreen';// 引入全屏组件
 import styles from './index.less';
-
+import { setLocale, getLocale, FormattedMessage } from 'umi';
 
 export type SiderTheme = 'light' | 'dark';
 
@@ -31,6 +31,16 @@ const GlobalHeaderRight: React.FC = () => {
   if ((navTheme === 'dark' && layout === 'top') || layout === 'mix') {
     className = `${styles.right}  ${styles.dark}`;
   }
+
+  const changLang = () => {
+    const locale = getLocale();
+    if (!locale || locale === 'zh-CN') {
+      setLocale('en-US');
+    } else {
+      setLocale('zh-CN');
+    }
+  };
+
   return (
     <Space className={className}>
       {/* <HeaderSearch
@@ -52,6 +62,19 @@ const GlobalHeaderRight: React.FC = () => {
       //   console.log('input', value);
       // }}
       /> */}
+      <div>
+        <Button
+          size="small"
+          style={{
+            margin: '0 8px',
+          }}
+          onClick={() => {
+            changLang();
+          }}
+        >
+          <FormattedMessage id="navBar.lang" />
+        </Button>
+      </div>
       <FullScreen />
       <HeaderDropdown
         overlay={

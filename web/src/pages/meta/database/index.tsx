@@ -3,7 +3,7 @@ import { PageContainer } from '@ant-design/pro-layout';
 import ProTable, { ProColumns, ActionType } from '@ant-design/pro-table';
 import { TableListItem } from './data.d';
 import { queryDatabase } from './service';
-
+import { useAccess, FormattedMessage } from 'umi';
 
 const TableList: React.FC<{}> = () => {
 
@@ -12,30 +12,30 @@ const TableList: React.FC<{}> = () => {
   const columns: ProColumns<TableListItem>[] = [
 
     {
-      title: '数据库名',
+      title: <FormattedMessage id="pages.searchTable.column.databaseName" />,
       dataIndex: 'database_name',
       sorter: true,
     },
     {
-      title: '库字符集',
+      title: <FormattedMessage id="pages.searchTable.column.characters" />,
       dataIndex: 'characters',
       hideInSearch: true,
     },
     {
-      title: '数据库类型',
+      title: <FormattedMessage id="pages.searchTable.column.databaseType" />,
       dataIndex: 'datasource_type',
       sorter: true,
     },
     {
-      title: '所属主机',
+      title: <FormattedMessage id="pages.searchTable.column.host" />,
       dataIndex: 'host',
     },
     {
-      title: '所属端口',
+      title: <FormattedMessage id="pages.searchTable.column.port" />,
       dataIndex: 'port',
     },
     {
-      title: '创建时间',
+      title: <FormattedMessage id="pages.searchTable.column.gmtCreated" />,
       dataIndex: 'gmt_created',
       sorter: true,
       valueType: 'dateTime',
@@ -43,7 +43,7 @@ const TableList: React.FC<{}> = () => {
       search: false,
     },
     {
-      title: '修改时间',
+      title: <FormattedMessage id="pages.searchTable.column.gmtUpdated" />,
       dataIndex: 'gmt_updated',
       sorter: true,
       valueType: 'dateTime',
@@ -56,7 +56,7 @@ const TableList: React.FC<{}> = () => {
   return (
     <PageContainer>
       <ProTable<TableListItem>
-        headerTitle="数据库列表"
+        headerTitle={<FormattedMessage id="pages.searchTable.datalist" />}
         actionRef={actionRef}
         rowKey="id"
         search={{

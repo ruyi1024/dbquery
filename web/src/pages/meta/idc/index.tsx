@@ -1,13 +1,13 @@
-import { PlusOutlined,FormOutlined,DeleteOutlined } from '@ant-design/icons';
+import { PlusOutlined, FormOutlined, DeleteOutlined } from '@ant-design/icons';
 import { Button, Divider, message, Popconfirm, Select } from 'antd';
-import React, {useState, useRef, useEffect} from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { PageContainer } from '@ant-design/pro-layout';
 import ProTable, { ProColumns, ActionType } from '@ant-design/pro-table';
 import CreateForm from './components/CreateForm';
 import UpdateForm from './components/UpdateForm';
 import { TableListItem } from './data.d';
 import { queryIdc, updateIdc, addIdc, removeIdc } from './service';
-import { useAccess } from 'umi';
+import { useAccess, FormattedMessage } from 'umi';
 
 /**
  * 添加节点
@@ -31,12 +31,12 @@ const handleAdd = async (fields: TableListItem) => {
  * 更新节点
  * @param fields
  */
-const handleUpdate = async (fields: FormValueType,id: number) => {
+const handleUpdate = async (fields: FormValueType, id: number) => {
   const hide = message.loading('正在配置');
   try {
     await updateIdc({
       ...fields,
-      "id":id,
+      "id": id,
     });
     hide();
     message.success('修改成功');
@@ -68,7 +68,7 @@ const handleRemove = async (id: number) => {
   }
 };
 
-const formInitValue = {"id":0,"idc_name":"","description":""}
+const formInitValue = { "id": 0, "idc_name": "", "description": "" }
 
 const TableList: React.FC<{}> = () => {
   const [createModalVisible, handleModalVisible] = useState<boolean>(false);
@@ -81,7 +81,7 @@ const TableList: React.FC<{}> = () => {
   const columns: ProColumns<TableListItem>[] = [
 
     {
-      title: '机房',
+      title: <FormattedMessage id="pages.searchTable.column.ic" />,
       dataIndex: 'idc_name',
       initialValue: formValues.idc_name,
       sorter: false,
@@ -90,7 +90,7 @@ const TableList: React.FC<{}> = () => {
         rules: [
           {
             required: true,
-            message: '此项为必填项',
+            message: <FormattedMessage id="pages.searchTable.form.requireItem" />,
           },
         ],
       },
@@ -100,26 +100,26 @@ const TableList: React.FC<{}> = () => {
       dataIndex: 'description',
       initialValue: formValues.description,
       sorter: false,
-      search:true,
+      search: true,
     },
     {
-      title: '创建时间',
+      title: <FormattedMessage id="pages.searchTable.column.gmtCreated" />,
       dataIndex: 'gmt_created',
       sorter: true,
       valueType: 'dateTime',
       hideInForm: true,
-      search:false,
+      search: false,
     },
     {
-      title: '修改时间',
+      title: <FormattedMessage id="pages.searchTable.column.gmtUpdated" />,
       dataIndex: 'gmt_updated',
       sorter: true,
       valueType: 'dateTime',
       hideInForm: true,
-      search:false,
+      search: false,
     },
     {
-      title: '操作',
+      title: <FormattedMessage id="pages.searchTable.column.operate" />,
       dataIndex: 'option',
       valueType: 'option',
       render: (_, record) => (
@@ -130,14 +130,14 @@ const TableList: React.FC<{}> = () => {
               setFormValues(record);
             }}
           >
-            <FormOutlined />修改
+            <FormOutlined /><FormattedMessage id="pages.searchTable.operate.edit" />
           </a>
           <Divider type="vertical" />
           <Popconfirm
             title={`确认要删除数据【${record.idc_name}】,删除后不可恢复，是否继续？`}
             placement={"left"}
-            onConfirm={async ()=>{
-              if (!access.canAdmin) {message.error('操作权限受限，请联系平台管理员');return}
+            onConfirm={async () => {
+              if (!access.canAdmin) { message.error('操作权限受限，请联系平台管理员'); return }
               const success = await handleRemove(record.id);
               if (success) {
                 if (actionRef.current) {
@@ -146,7 +146,7 @@ const TableList: React.FC<{}> = () => {
               }
             }}
           >
-            <a><DeleteOutlined />删除</a>
+            <a><DeleteOutlined /><FormattedMessage id="pages.searchTable.operate.delete" /></a>
           </Popconfirm>
         </>
       ),
@@ -156,18 +156,19 @@ const TableList: React.FC<{}> = () => {
   return (
     <PageContainer>
       <ProTable<TableListItem>
-        headerTitle="数据列表"
+        headerTitle={<FormattedMessage id="pages.searchTable.datalist" />}
         actionRef={actionRef}
         rowKey="id"
         search={true}
         toolBarRender={() => [
           <Button type="primary"
-                  onClick={() => {
-                    handleModalVisible(true);
-                    setFormValues(formInitValue);
-                  }}
+            onClick={() => {
+              handleModalVisible(true);
+              setFormValues(formInitValue);
+            }}
           >
-            <PlusOutlined /> 新建
+            <PlusOutlined />
+            <FormattedMessage id="pages.searchTable.operate.create" />
           </Button>,
         ]}
         request={(params, sorter, filter) => queryIdc({ ...params, sorter, filter })}
@@ -177,7 +178,7 @@ const TableList: React.FC<{}> = () => {
       <CreateForm onCancel={() => handleModalVisible(false)} modalVisible={createModalVisible}>
         <ProTable<TableListItem, TableListItem>
           onSubmit={async (value) => {
-            if (!access.canAdmin) {message.error('操作权限受限，请联系平台管理员');return}
+            if (!access.canAdmin) { message.error('操作权限受限，请联系平台管理员'); return }
             const success = await handleAdd(value);
             if (success) {
               handleModalVisible(false);
@@ -195,8 +196,8 @@ const TableList: React.FC<{}> = () => {
       <UpdateForm onCancel={() => handleUpdateModalVisible(false)} updateModalVisible={updateModalVisible}>
         <ProTable<TableListItem, TableListItem>
           onSubmit={async (value) => {
-            if (!access.canAdmin) {message.error('操作权限受限，请联系平台管理员');return}
-            const success = await handleUpdate(value,formValues.id);
+            if (!access.canAdmin) { message.error('操作权限受限，请联系平台管理员'); return }
+            const success = await handleUpdate(value, formValues.id);
             if (success) {
               handleUpdateModalVisible(false);
               if (actionRef.current) {

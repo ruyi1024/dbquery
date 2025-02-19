@@ -1,5 +1,6 @@
 import React from 'react';
 import { Modal } from 'antd';
+import { FormattedMessage } from 'umi';
 
 interface CreateFormProps {
   modalVisible: boolean;
@@ -12,7 +13,7 @@ const CreateForm: React.FC<CreateFormProps> = (props) => {
   return (
     <Modal
       destroyOnClose
-      title="新建"
+      title={<FormattedMessage id="pages.searchTable.operate.create" />}
       visible={modalVisible}
       onCancel={() => onCancel()}
       footer={null}

@@ -9,6 +9,7 @@ import { Gauge } from '@ant-design/charts';
 import PieChart from '@/components/Chart/PieChart';
 import { StatisticCard } from '@ant-design/pro-components';
 import moment from "moment";
+import { FormattedMessage } from 'umi';
 
 const { Divider } = StatisticCard;
 
@@ -135,7 +136,7 @@ export default (): React.ReactNode => {
           <StatisticCard.Group>
             <StatisticCard
               statistic={{
-                title: '类型',
+                title: <FormattedMessage id="pages.searchTable.column.type" />,
                 value: dashboardData && dashboardData.datasourceTypeCount,
                 status: 'processing',
               }}
@@ -143,7 +144,7 @@ export default (): React.ReactNode => {
             <Divider />
             <StatisticCard
               statistic={{
-                title: '机房',
+                title: <FormattedMessage id="pages.searchTable.column.ic" />,
                 value: dashboardData && dashboardData.datasourceIdcCount,
                 status: 'processing',
               }}
@@ -151,7 +152,7 @@ export default (): React.ReactNode => {
             <Divider />
             <StatisticCard
               statistic={{
-                title: '环境',
+                title: <FormattedMessage id="pages.searchTable.column.env" />,
                 value: dashboardData && dashboardData.datasourceEnvCount,
                 status: 'processing',
               }}

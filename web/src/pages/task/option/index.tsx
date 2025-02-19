@@ -7,7 +7,7 @@ import CreateForm from './components/CreateForm';
 import UpdateForm from './components/UpdateForm';
 import { TableListItem } from './data.d';
 import { query, update, add, remove } from './service';
-import { useAccess } from 'umi';
+import { useAccess, FormattedMessage } from 'umi';
 
 /**
  * 添加节点
@@ -80,7 +80,7 @@ const TableList: React.FC<{}> = () => {
 
   const columns: ProColumns<TableListItem>[] = [
     {
-      title: '任务标识',
+      title: <FormattedMessage id="pages.searchTable.column.taskKey" />,
       dataIndex: 'task_key',
       initialValue: formValues.task_key,
       sorter: true,
@@ -88,13 +88,13 @@ const TableList: React.FC<{}> = () => {
         rules: [
           {
             required: true,
-            message: '此项为必填项',
+            message: <FormattedMessage id="pages.searchTable.form.requireItem" />,
           },
         ],
       },
     },
     {
-      title: '任务名',
+      title: <FormattedMessage id="pages.searchTable.column.taskName" />,
       dataIndex: 'task_name',
       initialValue: formValues.task_name,
       sorter: true,
@@ -102,13 +102,13 @@ const TableList: React.FC<{}> = () => {
         rules: [
           {
             required: true,
-            message: '此项为必填项',
+            message: <FormattedMessage id="pages.searchTable.form.requireItem" />,
           },
         ],
       },
     },
     {
-      title: '任务描述',
+      title: <FormattedMessage id="pages.searchTable.column.taskDescription" />,
       dataIndex: 'task_description',
       initialValue: formValues.task_description,
       sorter: false,
@@ -117,20 +117,20 @@ const TableList: React.FC<{}> = () => {
         rules: [
           {
             required: true,
-            message: '此项为必填项',
+            message: <FormattedMessage id="pages.searchTable.form.requireItem" />,
           },
         ],
       },
     },
     {
-      title: '计划任务',
+      title: <FormattedMessage id="pages.searchTable.column.crontab" />,
       dataIndex: 'crontab',
       initialValue: formValues.crontab,
       sorter: false,
       search: false,
     },
     {
-      title: '启用',
+      title: <FormattedMessage id="pages.searchTable.column.enable" />,
       dataIndex: 'enable',
       filters: true,
       onFilter: true,
@@ -144,7 +144,7 @@ const TableList: React.FC<{}> = () => {
         rules: [
           {
             required: true,
-            message: '此项为必填项',
+            message: <FormattedMessage id="pages.searchTable.form.requireItem" />,
           },
         ],
       },
@@ -163,7 +163,7 @@ const TableList: React.FC<{}> = () => {
     },
 
     {
-      title: '创建时间',
+      title: <FormattedMessage id="pages.searchTable.column.gmtCreated" />,
       dataIndex: 'gmt_created',
       sorter: true,
       valueType: 'dateTime',
@@ -171,7 +171,7 @@ const TableList: React.FC<{}> = () => {
       search: false,
     },
     {
-      title: '修改时间',
+      title: <FormattedMessage id="pages.searchTable.column.gmtUpdated" />,
       dataIndex: 'gmt_updated',
       sorter: true,
       valueType: 'dateTime',
@@ -179,7 +179,7 @@ const TableList: React.FC<{}> = () => {
       search: false,
     },
     {
-      title: '操作',
+      title: <FormattedMessage id="pages.searchTable.column.operate" />,
       dataIndex: 'option',
       valueType: 'option',
       render: (_, record) => (
@@ -190,7 +190,7 @@ const TableList: React.FC<{}> = () => {
               setFormValues(record);
             }}
           >
-            <FormOutlined />修改
+            <FormOutlined /><FormattedMessage id="pages.searchTable.operate.edit" />
           </a>
           <Divider type="vertical" />
           <Popconfirm
@@ -206,7 +206,7 @@ const TableList: React.FC<{}> = () => {
               }
             }}
           >
-            <a><DeleteOutlined />删除</a>
+            <a><DeleteOutlined /><FormattedMessage id="pages.searchTable.operate.delete" /></a>
           </Popconfirm>
         </>
       ),
@@ -216,7 +216,7 @@ const TableList: React.FC<{}> = () => {
   return (
     <PageContainer>
       <ProTable<TableListItem>
-        headerTitle="数据列表"
+        headerTitle={<FormattedMessage id="pages.searchTable.datalist" />}
         actionRef={actionRef}
         rowKey="id"
         search={true}
@@ -227,7 +227,8 @@ const TableList: React.FC<{}> = () => {
               setFormValues(formInitValue);
             }}
           >
-            <PlusOutlined /> 新建
+            <PlusOutlined />
+            <FormattedMessage id="pages.searchTable.operate.create" />
           </Button>,
         ]}
         request={(params, sorter, filter) => query({ ...params, sorter, filter })}

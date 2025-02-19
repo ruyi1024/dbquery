@@ -17,6 +17,7 @@ or use it for commercial purposes after secondary development, otherwise you may
 package router
 
 import (
+	"dbmcloud/src/controller/audit"
 	"dbmcloud/src/controller/datasource"
 	"dbmcloud/src/controller/favorite"
 	"dbmcloud/src/controller/meta"
@@ -96,7 +97,7 @@ func Router() *gin.Engine {
 		v1.POST("/meta/env/list", meta.MetaEnvList)
 		v1.PUT("/meta/env/list", meta.MetaEnvList)
 		v1.DELETE("/meta/env/list", meta.MetaEnvList)
-
+		v1.GET("/audit/query_log", audit.GetQueryLog)
 		v1.GET("/task/list", task.TaskList)
 
 	}

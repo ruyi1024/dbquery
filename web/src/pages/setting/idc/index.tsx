@@ -7,8 +7,7 @@ import CreateForm from './components/CreateForm';
 import UpdateForm from './components/UpdateForm';
 import { TableListItem } from './data.d';
 import { queryIdc, updateIdc, addIdc, removeIdc } from './service';
-import { useAccess } from 'umi';
-
+import { useAccess, FormattedMessage } from 'umi';
 /**
  * 添加节点
  * @param fields
@@ -80,7 +79,7 @@ const TableList: React.FC<{}> = () => {
 
   const columns: ProColumns<TableListItem>[] = [
     {
-      title: '机房标识',
+      title: <FormattedMessage id="pages.searchTable.column.idcKey" />,
       dataIndex: 'idc_key',
       initialValue: formValues.idc_key,
       sorter: false,
@@ -88,13 +87,13 @@ const TableList: React.FC<{}> = () => {
         rules: [
           {
             required: true,
-            message: '此项为必填项',
+            message: <FormattedMessage id="pages.searchTable.form.requireItem" />,
           },
         ],
       },
     },
     {
-      title: '机房名',
+      title: <FormattedMessage id="pages.searchTable.column.idcName" />,
       dataIndex: 'idc_name',
       initialValue: formValues.idc_name,
       sorter: false,
@@ -102,13 +101,13 @@ const TableList: React.FC<{}> = () => {
         rules: [
           {
             required: true,
-            message: '此项为必填项',
+            message: <FormattedMessage id="pages.searchTable.form.requireItem" />,
           },
         ],
       },
     },
     {
-      title: '所在城市',
+      title: <FormattedMessage id="pages.searchTable.column.city" />,
       dataIndex: 'city',
       initialValue: formValues.city,
       sorter: false,
@@ -116,19 +115,19 @@ const TableList: React.FC<{}> = () => {
         rules: [
           {
             required: true,
-            message: '此项为必填项',
+            message: <FormattedMessage id="pages.searchTable.form.requireItem" />,
           },
         ],
       },
     },
     {
-      title: '机房备注',
+      title: <FormattedMessage id="pages.searchTable.column.description" />,
       dataIndex: 'description',
       initialValue: formValues.description,
       sorter: false,
     },
     {
-      title: '创建时间',
+      title: <FormattedMessage id="pages.searchTable.column.gmtCreated" />,
       dataIndex: 'gmt_created',
       sorter: true,
       valueType: 'dateTime',
@@ -136,7 +135,7 @@ const TableList: React.FC<{}> = () => {
       search: false,
     },
     {
-      title: '修改时间',
+      title: <FormattedMessage id="pages.searchTable.column.gmtUpdated" />,
       dataIndex: 'gmt_updated',
       sorter: true,
       valueType: 'dateTime',
@@ -144,7 +143,7 @@ const TableList: React.FC<{}> = () => {
       search: false,
     },
     {
-      title: '操作',
+      title: <FormattedMessage id="pages.searchTable.column.operate" />,
       dataIndex: 'option',
       valueType: 'option',
       render: (_, record) => (
@@ -155,7 +154,7 @@ const TableList: React.FC<{}> = () => {
               setFormValues(record);
             }}
           >
-            <FormOutlined />修改
+            <FormOutlined /><FormattedMessage id="pages.searchTable.operate.edit" />
           </a>
           <Divider type="vertical" />
           <Popconfirm
@@ -171,7 +170,7 @@ const TableList: React.FC<{}> = () => {
               }
             }}
           >
-            <a><DeleteOutlined />删除</a>
+            <a><DeleteOutlined /><FormattedMessage id="pages.searchTable.operate.delete" /></a>
           </Popconfirm>
         </>
       ),
@@ -181,7 +180,7 @@ const TableList: React.FC<{}> = () => {
   return (
     <PageContainer>
       <ProTable<TableListItem>
-        headerTitle="数据列表"
+        headerTitle={<FormattedMessage id="pages.searchTable.datalist" />}
         actionRef={actionRef}
         rowKey="id"
         search={true}
@@ -192,7 +191,8 @@ const TableList: React.FC<{}> = () => {
               setFormValues(formInitValue);
             }}
           >
-            <PlusOutlined /> 新建
+            <PlusOutlined />
+            <FormattedMessage id="pages.searchTable.operate.create" />
           </Button>,
         ]}
         request={(params, sorter, filter) => queryIdc({ ...params, sorter, filter })}
