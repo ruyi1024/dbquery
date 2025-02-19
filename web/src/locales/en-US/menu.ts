@@ -9,6 +9,7 @@ export default {
   'menu.execute': 'SQL Execute',
   'menu.privilege': 'Privilege',
   'menu.audit': 'Audit',
+  'menu.report': 'Report',
   'menu.monitor.event': 'Event',
   'menu.monitor.dashboard': 'Event Dashboard',
   'menu.privilege.index': 'Privilege List',

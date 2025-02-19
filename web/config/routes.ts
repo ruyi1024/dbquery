@@ -27,13 +27,7 @@ export default [
     icon: 'database',
     path: '/meta',
     routes: [
-      { path: '/meta', redirect: '/meta/dashboard' },
-      {
-        path: '/meta/dashboard',
-        name: 'dashboard',
-        component: './meta/dashboard',
-        icon: 'BlockOutlined',
-      },
+      { path: '/meta', redirect: '/meta/instance' },
       {
         path: '/meta/instance',
         name: 'instance',
@@ -59,6 +53,12 @@ export default [
         icon: 'BlockOutlined',
       },
     ],
+  },
+  {
+    name: 'report',
+    icon: 'AuditOutlined',
+    path: '/report',
+    component: './report/',
   },
   {
     name: 'audit',
@@ -132,6 +132,7 @@ export default [
       },
     ],
   },
+  
   {
     name: 'support',
     icon: 'BulbOutlined',

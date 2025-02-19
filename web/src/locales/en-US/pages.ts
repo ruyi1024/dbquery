@@ -85,6 +85,8 @@ export default {
   'pages.task.taskName': 'Task Name',
   'pages.task.taskDescription': 'Task Description',
   'pages.task.crontab': 'Crontab',
+  'pages.searchTable.column.heartbeatTime': 'Heartbeat Time',
+  'pages.searchTable.column.heartbeatEndtime': 'Heartbeat Endtime',
 
   'pages.searchTable.datalist': 'DataList',
   'pages.searchTable.status': 'Status',
@@ -150,5 +152,18 @@ export default {
   'pages.searchTable.column.defaultValue': 'Default Value',
   'pages.searchTable.column.columnComment': 'Column Comment',
   'pages.searchTable.column.characters': 'Characters',
+
+  'pages.searchTable.column.username': 'Username',
+  'pages.searchTable.column.chineseName': 'Chinese Name',
+  'pages.searchTable.column.admin': 'Admin',
+
+  'pages.report.instance': 'Instance',
+  'pages.report.database': 'Database',
+  'pages.report.table': 'Table',
+  'pages.report.column': 'Column',
+  'pages.report.datasourceDistribution': 'Datasource Distribution',
+  'pages.report.databaseDistribution': 'Database Distribution',
+  'pages.report.tableDistribution': 'Table Distribution',
+  'pages.report.columnDistribution': 'Column Distribution',
 
 };

@@ -95,21 +95,21 @@ const UserManager: React.FC = () => {
 
   const columns = [
     {
-      title: '用户名',
+      title: <FormattedMessage id="pages.searchTable.column.username" />,
       dataIndex: 'username',
       sorter: true,
       render: (text: string) => <a>{text}</a>,
     },
     {
-      title: '姓名',
+      title: <FormattedMessage id="pages.searchTable.column.chineseName" />,
       dataIndex: 'chineseName',
       sorter: true,
     },
     {
-      title: '管理员',
+      title: <FormattedMessage id="pages.searchTable.column.admin" />,
       dataIndex: 'admin',
       sorter: true,
-      render: (text: boolean) => <Tag color={text ? 'green' : ''}>{text ? '是' : '否'}</Tag>,
+      render: (text: boolean) => <Tag color={text ? 'green' : ''}>{text ? <FormattedMessage id="pages.searchTable.column.yes" /> : <FormattedMessage id="pages.searchTable.column.no" />}</Tag>,
     },
     {
       title: <FormattedMessage id="pages.searchTable.column.gmtCreated" />,

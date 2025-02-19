@@ -9,6 +9,7 @@ export default {
   'menu.execute': 'SQL查询',
   'menu.privilege': '权限',
   'menu.audit': '审计',
+  'menu.report': '报告',
   'menu.monitor.event': '监控事件和图表',
   'menu.monitor.dashboard': '监控大盘',
   'menu.privilege.index': '已授权限查询',

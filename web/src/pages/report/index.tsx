@@ -55,56 +55,6 @@ export default (): React.ReactNode => {
   const [tablePieData, setTablePieData] = useState<any>([{ type: 'noData', value: 1 }]);
   const [columnPieData, setColumnPieData] = useState<any>([{ type: 'noData', value: 1 }]);
 
-  // const columns_event = [
-  //   {
-  //     title: '事件时间',
-  //     dataIndex: 'event_time',
-  //   },
-  //   {
-  //     title: '事件类型',
-  //     dataIndex: 'event_type',
-  //   },
-  //   {
-  //     title: '事件组',
-  //     dataIndex: 'event_group',
-  //   },
-  //   {
-  //     title: '事件实体',
-  //     dataIndex: 'event_entity',
-  //   },
-  //   {
-  //     title: '事件指标',
-  //     dataIndex: 'event_key',
-  //   },
-  //   {
-  //     title: '事件值',
-  //     dataIndex: 'event_value',
-  //     render: (_: any, record: any) => <>{record.event_value}</>,
-  //   },
-  // ];
-
-  // const columns_alarm = [
-  //   {
-  //     title: '告警时间',
-  //     dataIndex: 'event_time',
-  //   },
-  //   {
-  //     title: '告警信息',
-  //     dataIndex: 'alarm_title',
-  //   },
-  //   {
-  //     title: '告警级别',
-  //     dataIndex: 'alarm_level',
-  //   },
-  //   {
-  //     title: '事件类型',
-  //     dataIndex: 'event_type',
-  //   },
-  //   {
-  //     title: '事件实体',
-  //     dataIndex: 'event_entity',
-  //   },
-  // ];
 
   useEffect(() => {
     try {
@@ -144,7 +94,7 @@ export default (): React.ReactNode => {
             <Divider />
             <StatisticCard
               statistic={{
-                title: <FormattedMessage id="pages.searchTable.column.ic" />,
+                title: <FormattedMessage id="pages.searchTable.column.idc" />,
                 value: dashboardData && dashboardData.datasourceIdcCount,
                 status: 'processing',
               }}
@@ -160,7 +110,7 @@ export default (): React.ReactNode => {
             <Divider />
             <StatisticCard
               statistic={{
-                title: '实例数',
+                title: <FormattedMessage id="pages.report.instance" />,
                 value: dashboardData && dashboardData.datasourceCount,
                 status: 'processing',
               }}
@@ -168,21 +118,21 @@ export default (): React.ReactNode => {
             <Divider />
             <StatisticCard
               statistic={{
-                title: '数据库',
+                title: <FormattedMessage id="pages.report.database" />,
                 value: dashboardData && dashboardData.databaseCount,
                 status: 'warning',
               }}
             />
             <StatisticCard
               statistic={{
-                title: '数据表',
+                title: <FormattedMessage id="pages.report.table" />,
                 value: dashboardData && dashboardData.tableCount,
                 status: 'success',
               }}
             />
             <StatisticCard
               statistic={{
-                title: '字段',
+                title: <FormattedMessage id="pages.report.column" />,
                 value: dashboardData && dashboardData.columnCount,
                 status: 'error',
               }}
@@ -193,12 +143,12 @@ export default (): React.ReactNode => {
 
       <Row gutter={[16, 24]} style={{ marginTop: '15px' }}>
         <Col span={12}>
-          <Card title={<span><PieChartTwoTone />&nbsp;数据源实例分布</span>} bordered={false}>
+          <Card title={<span><PieChartTwoTone />&nbsp;<FormattedMessage id="pages.report.datasourceDistribution" /></span>} bordered={false}>
             <PieChart data={datasourcePieData} loading={loading} height={330} />
           </Card>
         </Col>
         <Col span={12}>
-          <Card title={<span><PieChartTwoTone />&nbsp;数据库分布</span>} bordered={false}>
+          <Card title={<span><PieChartTwoTone />&nbsp;<FormattedMessage id="pages.report.databaseDistribution" /></span>} bordered={false}>
             <PieChart data={databasePieData} loading={loading} height={330} />
           </Card>
         </Col>
@@ -206,41 +156,18 @@ export default (): React.ReactNode => {
 
       <Row gutter={[16, 24]} style={{ marginTop: '15px' }}>
         <Col span={12}>
-          <Card title={<span><PieChartTwoTone />&nbsp;数据表分布</span>} bordered={false}>
+          <Card title={<span><PieChartTwoTone />&nbsp;<FormattedMessage id="pages.report.tableDistribution" /></span>} bordered={false}>
             <PieChart data={tablePieData} loading={loading} height={330} />
           </Card>
         </Col>
         <Col span={12}>
-          <Card title={<span><PieChartTwoTone />&nbsp;数据字段分布</span>} bordered={false}>
+          <Card title={<span><PieChartTwoTone />&nbsp;<FormattedMessage id="pages.report.columnDistribution" /></span>} bordered={false}>
             <PieChart data={columnPieData} loading={loading} height={330} />
           </Card>
         </Col>
       </Row>
 
-      {/* <Row gutter={[16, 24]} style={{ marginTop: '15px' }}>
-        <Col span={12}>
-          <Card title={<span><ProfileTwoTone />&nbsp;最新数据库</span>} bordered={false} size="small">
-            <Table
-              columns={columns_event}
-              loading={loading}
-              dataSource={eventList}
-              size="small"
-              pagination={false}
-            />
-          </Card>
-        </Col>
-        <Col span={12}>
-          <Card title={<span><SoundTwoTone />&nbsp;最新数据表</span>} bordered={false} size="small">
-            <Table
-              columns={columns_alarm}
-              loading={loading}
-              dataSource={alarmList}
-              size="small"
-              pagination={false}
-            />
-          </Card>
-        </Col>
-      </Row> */}
+
     </PageContainer>
   );
 };

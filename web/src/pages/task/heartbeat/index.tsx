@@ -12,19 +12,19 @@ const TableList: React.FC<{}> = () => {
 
   const columns: ProColumns<TableListItem>[] = [
     {
-      title: '任务标识',
+      title: <FormattedMessage id="pages.searchTable.column.taskKey" />,
       dataIndex: 'heartbeat_key',
       sorter: true,
     },
     {
-      title: '心跳开始时间',
+      title: <FormattedMessage id="pages.searchTable.column.heartbeatTime" />,
       dataIndex: 'heartbeat_time',
       sorter: true,
       valueType: 'dateTime',
       search: false,
     },
     {
-      title: '心跳结束时间',
+      title: <FormattedMessage id="pages.searchTable.column.heartbeatEndtime" />,
       dataIndex: 'heartbeat_end_time',
       sorter: true,
       valueType: 'dateTime',

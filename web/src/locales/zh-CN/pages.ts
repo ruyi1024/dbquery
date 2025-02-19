@@ -114,6 +114,9 @@ export default {
   'pages.searchTable.column.taskName': '任务名称',
   'pages.searchTable.column.taskDescription': '任务描述',
   'pages.searchTable.column.crontab': '计划任务',
+  'pages.searchTable.column.heartbeatTime': '心跳开始时间',
+  'pages.searchTable.column.heartbeatEndtime': '心跳结束时间',
+
   'pages.searchTable.column.master': '主',
   'pages.searchTable.column.slave': '备',
   'pages.searchTable.column.role': '角色',
@@ -131,6 +134,19 @@ export default {
   'pages.searchTable.column.defaultValue': '默认值',
   'pages.searchTable.column.columnComment': '字段备注',
   'pages.searchTable.column.characters': '字符集',
+
+  'pages.searchTable.column.username': '用户名',
+  'pages.searchTable.column.chineseName': '姓名',
+  'pages.searchTable.column.admin': '管理员',
+
+  'pages.report.instance': '实例数',
+  'pages.report.database': '数据库',
+  'pages.report.table': '数据表',
+  'pages.report.column': '字段',
+  'pages.report.datasourceDistribution': '数据源分布',
+  'pages.report.databaseDistribution': '数据库分布',
+  'pages.report.tableDistribution': '数据表分布',
+  'pages.report.columnDistribution': '数据列分别',
 
 
 
