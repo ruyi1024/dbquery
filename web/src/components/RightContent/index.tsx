@@ -90,7 +90,7 @@ const GlobalHeaderRight: React.FC = () => {
                 }))
               }}
             >
-              开灯
+              <FormattedMessage id="navBar.light" />
             </Menu.Item>
             <Menu.Item
               onClick={() => {
@@ -103,7 +103,7 @@ const GlobalHeaderRight: React.FC = () => {
                 }))
               }}
             >
-              关灯
+              <FormattedMessage id="navBar.realDark" />
             </Menu.Item>
           </Menu>
         }
@@ -117,17 +117,17 @@ const GlobalHeaderRight: React.FC = () => {
           <Menu>
             <Menu.Item
               onClick={() => {
-                window.open('https://www.lepus.cc');
+                window.open('https://www.db-query.com');
               }}
             >
-              Lepus官网
+              DBQuery
             </Menu.Item>
             <Menu.Item
               onClick={() => {
-                window.open('https://discuss.lepus.cc');
+                window.open('https://www.lepus.cc');
               }}
             >
-              Lepus社区
+              Lepus
             </Menu.Item>
           </Menu>
         }

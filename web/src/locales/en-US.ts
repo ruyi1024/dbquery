@@ -8,6 +8,11 @@ import settings from './en-US/settings';
 
 export default {
   'navBar.lang': 'Languages',
+  'navBar.light': 'Light',
+  'navBar.realDark': 'Real Dark',
+  'navBar.avatar.logout': 'Logout',
+  'layout.dbquerySite': 'DBQuery WebSite',
+  'layout.lepusSite': 'Lepus WebSite',
   'layout.user.link.help': 'Help',
   'layout.user.link.privacy': 'Privacy',
   'layout.user.link.terms': 'Terms',

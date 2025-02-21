@@ -1,12 +1,12 @@
 log:
-  path: "/tmp/lepus.log"
+  path: "/tmp/dbquery.log"
   level: "info"
   debug: false
 
 token:
   storage: "mysql"
   key: "S9p2+dsfM1CzLF=="
-  name: "lepus"
+  name: "dbquery"
   expired: "3d"
 
 decrypt:
@@ -20,34 +20,3 @@ dataSource:
   user: xxxxxx
   password: xxxxxx
   database: xxxxxx
-  #redis
-  redisHost: 127.0.0.1
-  redisPort: 6379
-  redisPassword: xxxxxx
-  #clickhouse
-  clickhouseHost: 127.0.0.1
-  clickhousePort: 9000
-  clickhouseUser: xxxxxx
-  clickhousePassword: xxxxxx
-  clickhouseDatabase: xxxxxx
-  #nsq
-  nsqServer: 127.0.0.1:4150
-
-notice:
-  #mail
-  mailHost: xxxxxx
-  mailPort: xxxxxx
-  mailUser: xxxxxx
-  mailPass: xxxxxx
-  mailFrom: xxxxxx
-  #aliyun:
-  accessKeyId: xxxxxx
-  accessKeySecret: xxxxxx
-  smsSignName: xxxxxx
-  smsTemplateCode: xxxxxx
-  phoneTemplateCode: xxxxxx
-  phonePlayTimes: 2
-  #wechat
-  wechatAppId: xxxxxx
-  wechatAppSecret: xxxxxx
-  wechatSendTemplateId: xxxxxx

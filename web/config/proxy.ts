@@ -8,14 +8,14 @@
 export default {
   dev: {
     '/api/v': {
-      target: 'http://127.0.0.1:8088',
+      target: 'http://127.0.0.1:8086',
       changeOrigin: true,
       pathRewrite: { '^': '' },
     },
   },
   test: {
     '/api/': {
-      target: 'http://127.0.0.1:8088',
+      target: 'http://127.0.0.1:8086',
       changeOrigin: true,
       pathRewrite: { '^': '' },
     },

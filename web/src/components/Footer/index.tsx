@@ -1,8 +1,8 @@
 import { GithubOutlined } from '@ant-design/icons';
 import { DefaultFooter } from '@ant-design/pro-components';
-
+import { FormattedMessage } from 'umi';
 const Footer: React.FC = () => {
-  const defaultMessage = 'LEPUS数据库服务平台， Power by Lepus.cc，Version:6.0';
+  const defaultMessage = 'DBQuery， Power by DB-Query.com，Version:1.0';
 
   const currentYear = new Date().getFullYear();
 
@@ -12,20 +12,20 @@ const Footer: React.FC = () => {
       links={[
         {
           key: 'Lepus-cc',
-          title: 'Lepus官方网站',
-          href: 'https://www.lepus.cc',
+          title: <FormattedMessage id="layout.dbquerySite" />,
+          href: 'https://db-query.com',
           blankTarget: true,
         },
         {
           key: 'github',
           title: <GithubOutlined />,
-          href: 'https://gitee.com/lepus-group',
+          href: 'https://github.com/ruyi1024/dbquery',
           blankTarget: true,
         },
         {
           key: 'discuss-lepus',
-          title: 'Lepus交流社区',
-          href: 'https://discuss.lepus.cc',
+          title: <FormattedMessage id="layout.lepusSite" />,
+          href: 'https://www.lepus.cc',
           blankTarget: true,
         },
       ]}

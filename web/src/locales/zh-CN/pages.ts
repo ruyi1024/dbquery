@@ -147,6 +147,107 @@ export default {
   'pages.report.databaseDistribution': '数据库分布',
   'pages.report.tableDistribution': '数据表分布',
   'pages.report.columnDistribution': '数据列分别',
+  'pages.report.instanceDistribution': '实例分布',
+
+  'pages.execute.favorite': '收藏夹',
+  'pages.execute.favoriteTime': '收藏时间',
+  'pages.execute.favoriteContent': '收藏内容',
+  'pages.execute.favoriteTip': '点击复制图标可以复制完整SQL',
+  'pages.execute.favoriteSuccess': '加入收藏夹成功',
+  'pages.execute.favoriteFailed': '加入收藏夹失败',
+  'pages.execute.favoriteSql': '收藏SQL',
+  'pages.execute.openFavorite': '打开收藏夹',
+  'pages.execute.favorite.add': '添加到SQL收藏夹',
+  'pages.execute.favorite.delete': '从SQL收藏夹删除',
+  'pages.execute.favorite.delete.confirm': '确定要删除吗？',
+  'pages.execute.favorite.delete.success': '删除成功',
+  'pages.execute.favorite.delete.error': '删除失败',
+  'pages.execute.favorite.add.success': '添加成功',
+  'pages.execute.favorite.add.error': '添加失败',
+  'pages.execute.favorite.add.confirm': '确定要添加吗？',
+
+
+  'pages.execute.datasourceType': '数据源类型',
+  'pages.execute.datasourceType.mysql': 'MySQL',
+  'pages.execute.datasourceType.mariadb': 'MariaDB',
+  'pages.execute.datasourceType.greatsql': 'GreatSQL',
+  'pages.execute.datasourceType.tidb': 'TiDB',
+  'pages.execute.datasourceType.doris': 'Doris',
+  'pages.execute.datasourceType.oceanbase': 'OceanBase',
+  'pages.execute.datasourceType.clickhouse': 'ClickHouse',
+  'pages.execute.datasourceType.oracle': 'Oracle',
+  'pages.execute.datasourceType.postgresql': 'PostgreSQL',
+  'pages.execute.datasourceType.sqlserver': 'SQLServer',
+  'pages.execute.datasourceType.mongodb': 'MongoDB',
+  'pages.execute.datasourceType.redis': 'Redis',
+  'pages.execute.datasourceType.other': '其他',
+  'pages.execute.datasource': '数据源',
+  'pages.execute.database': '数据库',
+  'pages.execute.table': '数据表',
+  'pages.execute.queryFailed': '执行失败：',
+  'pages.execute.copyData': '数据复制已被记录，请注意数据安全',
+  'pages.execute.selectDatasourceType': '请选择数据源类型',
+  'pages.execute.selectDatasource': '请选择数据源',
+  'pages.execute.selectDatabase': '请选择数据库',
+  'pages.execute.inputSql': '请输入执行的SQL命令',
+  'pages.execute.formatSql': '格式化SQL语句',
+  'pages.execute.close': '关闭',
+  'pages.execute.refresh': '刷新',
+  'pages.execute.executeSql': '执行语句',
+  'pages.execute.showIndex': '查看表索引',
+  'pages.execute.showExplain': '查看执行计划',
+  'pages.execute.showCreate': '查看建表语句',
+  'pages.execute.showColumn': '查看表结构',
+  'pages.execute.showTableSize': '查看表容量',
+  'pages.execute.currentQueryEngine': '当前查询引擎：',
+
+  'pages.support.title': '支持',
+  'pages.support.title.dbquery': 'DBQuery是什么？',
+  'pages.support.title.dbquery.desc': 'DBQuery查询平台(db-query.com)，由LEPUS开源数据库监控系统(lepus.cc)作者开发，致力于打造简洁、智能、强大的开源数据库一站式查询管控管理。',
+  'pages.support.title.dbquery.link': '进入官网了解更多',
+  'pages.support.title.dbquery.commercial': 'DBQuery是开源免费的吗？',
+  'pages.support.title.dbquery.commercial.desc': 'DBQuery是完全开源和免费的，您在遵守开源协议和DBQuery规范的前提下，可以免费使用。',
+  'pages.support.title.dbquery.commercial.link': '进入官网了解更多',
+  'pages.support.title.dbquery.license': 'DBQuery是什么开源协议，可以商业化吗？',
+  'pages.support.title.dbquery.license.desc': 'DBQuery采用的开源协议为GPLV3，您可以通过https://www.gnu.org/licenses/gpl-3.0.html 获取完整协议内容。特别注意：您可以下载使用源代码用于内部学习研究和使用，禁止任何形式的商业行为，包括但不限于二次开发的商业行为。',
+  'pages.support.title.dbquery.license.link': '进入官网了解更多',
+  'pages.support.title.dbquery.attention': '使用DBQuery需要注意什么？',
+  'pages.support.title.dbquery.attention.desc': 'DBQuery是开源免费产品，DBQuery开发团队和使用者无合同和责任关系，DBQuery团队不承担因产品或者使用问题造成的任何损失。',
+  'pages.support.title.dbquery.join': '如何加入DBQuery开发贡献代码？',
+  'pages.support.title.dbquery.join.desc': '请在我们的项目Git库提交Pull Requests即可：https://github.com/ruyi1024/dbquery',
+  'pages.support.title.dbquery.join.link': '进入官网了解更多',
+  'pages.support.title.dbquery.help': '如何获得社区帮助？',
+  'pages.support.title.dbquery.help.desc': '1.官网网站和Git仓库的文档和手册（优先）;2.加入DBQuery微信社区群（推荐）,添加作者微信 Ruyi-1024 后邀请入群（加微信请备注DBQuery加微信群）;',
+  'pages.support.title.dbquery.support': '从哪里获得技术支持？',
+  'pages.support.title.dbquery.support.desc': '时间是我最宝贵的财富，精力有限，除官方文档，社区外，作者不提供其他技术类的免费支持服务，请您理解，你可以在捐赠后获得作者本人的技术指导。',
+  'pages.support.title.dbquery.donate': '捐赠',
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

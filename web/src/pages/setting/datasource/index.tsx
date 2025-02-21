@@ -112,9 +112,6 @@ const formInitValue = {
   enable: '',
   execute_enable: '',
   dbmeta_enable: '',
-  sensitive_enable: '',
-  monitor_enable: '',
-  alarm_enable: '',
 };
 
 const TableList: React.FC<{}> = () => {

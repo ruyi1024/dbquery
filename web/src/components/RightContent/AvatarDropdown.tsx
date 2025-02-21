@@ -6,6 +6,7 @@ import { outLogin } from '@/services/login';
 import { stringify } from 'querystring';
 import HeaderDropdown from '../HeaderDropdown';
 import styles from './index.less';
+import { FormattedMessage } from 'umi';
 
 export type GlobalHeaderRightProps = {
   menu?: boolean;
@@ -69,7 +70,7 @@ const AvatarDropdown: React.FC<GlobalHeaderRightProps> = ({ menu }) => {
   const { currentUser } = initialState;
 
   console.info("current user debug --> ", currentUser)
-  if (!currentUser || !currentUser.username ) {
+  if (!currentUser || !currentUser.username) {
     return loading;
   }
 
@@ -92,7 +93,7 @@ const AvatarDropdown: React.FC<GlobalHeaderRightProps> = ({ menu }) => {
 
       <Menu.Item key="logout">
         <LogoutOutlined />
-        退出登录
+        <FormattedMessage id="navBar.avatar.logout" />
       </Menu.Item>
     </Menu>
   );

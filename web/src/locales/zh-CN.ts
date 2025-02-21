@@ -8,6 +8,11 @@ import settings from './zh-CN/settings';
 
 export default {
   'navBar.lang': '语言',
+  'navBar.light': '开灯',
+  'navBar.realDark': '关灯',
+  'navBar.avatar.logout': '退出登录',
+  'layout.dbquerySite': 'DBQuery官方网站',
+  'layout.lepusSite': 'Lepus官方网站',
   'layout.user.link.help': '帮助',
   'layout.user.link.privacy': '隐私',
   'layout.user.link.terms': '条款',

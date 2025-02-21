@@ -95,13 +95,21 @@ func DoQuery(c *gin.Context) {
 		findSqlType := regexp.MustCompile(`^\s*(?s:(.*?)) `).FindAllStringSubmatch(sql, -1)
 		sqlType = strings.ToLower(findSqlType[0][1])
 
+		//高危命令拦截
+		r1, _ := regexp.MatchString(`.*(?i)drop\s+|.*(?i)truncate\s+|.*(?i)rename\s+|.*(?i)shutdown\s+`, sql)
+		if r1 {
+			WriteLog(username.(string), datasourceType, datasource, queryType, sqlType, databaseName, intercept, 0, sql, "存在高风险命令.")
+			c.JSON(http.StatusOK, gin.H{"success": false, "msg": "存在高风险命令."})
+			return
+		}
+
 	}
 	fmt.Println("000000")
 	//查询数据源
 	dbHostPort := strings.Split(datasource, ":")
 	host := dbHostPort[0]
 	port := dbHostPort[1]
-	userPass, _ := database.QueryAll(fmt.Sprintf("select user,pass,dbid,dml_backup_enable,dml_backup_dir from datasource where host='%s' and port='%s' limit 1 ", host, port))
+	userPass, _ := database.QueryAll(fmt.Sprintf("select user,pass,dbid from datasource where host='%s' and port='%s' limit 1 ", host, port))
 	user := userPass[0]["user"].(string)
 	pass := userPass[0]["pass"].(string)
 
@@ -114,7 +122,7 @@ func DoQuery(c *gin.Context) {
 			return
 		}
 	}
-	fmt.Println("111111111")
+
 	if datasourceType == "MySQL" || datasourceType == "TiDB" || datasourceType == "Doris" || datasourceType == "MariaDB" || datasourceType == "GreatSQL" || datasourceType == "OceanBase" {
 
 		if queryType == "doExplain" {
@@ -145,7 +153,7 @@ func DoQuery(c *gin.Context) {
 		defer dbCon.Close()
 
 	}
-	fmt.Println("22222")
+
 	if datasourceType == "Oracle" {
 		sid := userPass[0]["dbid"].(string)
 		dbCon, err = db.Connect(db.WithDriver("godror"), db.WithHost(host), db.WithPort(port), db.WithUsername(user), db.WithPassword(origPass), db.WithSid(sid))

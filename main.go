@@ -109,5 +109,5 @@ func main() {
 		//c.String(200, "Lepus Home Test!")
 		c.HTML(200, "index.html", "")
 	})
-	_ = r.Run(":8088")
+	_ = r.Run(":8086")
 }
