@@ -1,5 +1,4 @@
 setting.yml
-/static/*
 /vendor/*
 **/vendor
 ./vendor
