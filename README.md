@@ -32,9 +32,11 @@ Use our compiled binary package for quick installation, suitable for users who d
 ```bash
 
 $ cd dbquery
-$ cp setting.example.yml setting.yml  //Create configuration files from configuration templates and modify database connection addresses
-$ sh install.sh
-$ sh start.sh
+$ sh install.sh  //Install software
+$ vim /etc/dbquery/setting.yml  //Modify configuration files database connection addresses
+$ sh start.sh  //Start service
+$ sh status.sh  //View service status
+$ sh stop.sh  //Stop service
 ```
 > After the service is running, use a browser to access: http://127.0.0.1:8086 Login to the system, default account password
 
