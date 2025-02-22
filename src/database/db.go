@@ -74,7 +74,7 @@ func InitDb() *gorm.DB {
 		if err = db.AutoMigrate(&model.Users{}); err != nil {
 			log.Error("db sync error.", zap.Error(err))
 		}
-		result := db.Create(&model.Users{Id: 1, Username: "admin", ChineseName: "Administrator", Password: "a8a0d32f1abefd3fa996321d5e72c6d6", Admin: true})
+		result := db.Create(&model.Users{Id: 1, Username: "admin", ChineseName: "Administrator", Password: "1037c2fc7e4167710a14496ed9c1fff3", Admin: true})
 		if result.Error != nil {
 			panic(result.Error)
 		}
