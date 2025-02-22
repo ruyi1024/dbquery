@@ -111,10 +111,10 @@ const Login: React.FC = () => {
           <div className={styles.header}>
             <Link to="/">
               <img alt="logo" className={styles.logo} src="/logo.png" />
-              <span className={styles.title}>LEPUS</span>
+              <span className={styles.title}>DBQuery</span>
             </Link>
           </div>
-          <div className={styles.desc}>数据库SQL查询、安全、监控、管理平台</div>
+          <div className={styles.desc}>Make database queries more secure</div>
         </div>
 
         <div className={styles.main}>
