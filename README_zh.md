@@ -1,4 +1,4 @@
-# ![DBQuery](./static/image/avatar.png)
+# [![pEl1emT.png](https://s21.ax1x.com/2025/02/22/pEl1emT.png)](https://imgse.com/i/pEl1emT)
 
 ## DBQuery：简洁、专业、安全的数据库查询管理平台
 
@@ -83,7 +83,9 @@ $ npm start
 
 ## 😘 赞助我
 ### 都划到这了，如果我的项目对您有帮助，请赞助我吧！😊😊😊
- ![wxpay.jpg](./static/image/wxpay.jpg) 
+| 微信 | 支付宝  |
+|-----|-----| 
+| [![pEl1Kk4.jpg](https://s21.ax1x.com/2025/02/22/pEl1Kk4.jpg)](https://imgse.com/i/pEl1Kk4)  | [![pEl1Qh9.jpg](https://s21.ax1x.com/2025/02/22/pEl1Qh9.jpg)](https://imgse.com/i/pEl1Qh9) |
 
 ## 🐳 关于技术支持申明
 - 本软件基于开源技术构建，使用Golang、Nodejs、Antd、MySQL等开源项目。 技术上如有问题，可以先向对应的开源社区请求帮助。
