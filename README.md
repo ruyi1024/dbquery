@@ -1,6 +1,6 @@
 # [![pEl1emT.png](https://s21.ax1x.com/2025/02/22/pEl1emT.png)](https://imgse.com/i/pEl1emT)
 
-## DBQuery：Professional and secure database query platform
+## DBQuery：Professional and Secure database query platform
 The database query platform is developed by the author of the LEPUS open-source database monitoring system (lepus. cc), dedicated to creating a simple, intelligent, powerful, and secure one-stop query management platform for open-source databases.
 
 [[**English**](README.md)] | [[**简体中文**](README_zh.md)]
