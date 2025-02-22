@@ -1,10 +1,11 @@
 # [![pEl1emT.png](https://s21.ax1x.com/2025/02/22/pEl1emT.png)](https://imgse.com/i/pEl1emT)
 
-## DBQuery：PProfessional and secure database query platform
+## DBQuery：Professional and secure database query platform
+The database query platform is developed by the author of the LEPUS open-source database monitoring system (lepus. cc), dedicated to creating a simple, intelligent, powerful, and secure one-stop query management platform for open-source databases.
 
 [[**English**](README.md)] | [[**简体中文**](README_zh.md)]
 
-###  ✨ Features：The database query platform is developed by the author of the LEPUS open-source database monitoring system (lepus. cc), dedicated to creating a simple, intelligent, powerful, and secure one-stop query management platform for open-source databases.
+###  ✨ Features：
 - Support MySQL Oracle、MariaDB、GreatSQL、PostgreSQL、Redis、MongoDB、SQLServer、TiDB、Doris、OceanBase、ClickHouse Waiting for SQL execution and data queries of various databases.
 - Support data queries such as execution plans, indexes, table structures, SQL tables, and table capacity for various databases.
 - Support automatic collection and querying of metadata information for various databases.
@@ -28,7 +29,7 @@
 - In the rapid iteration development of software, please prioritize testing and using the latest released version.
 - Welcome everyone to provide valuable suggestions, raise issues, PR.💕
 
-[![pEQLbTA.png](https://s21.ax1x.com/2025/02/21/pEQLbTA.png)](https://imgse.com/i/pEQLbTA)
+[![pEQL7eH.png](https://s21.ax1x.com/2025/02/21/pEQL7eH.png)](https://imgse.com/i/pEQL7eH)
 
 ## Install
 ### 📦  Quick start
@@ -42,7 +43,7 @@ $ sh start.sh  //Start service
 $ sh status.sh  //View service status
 $ sh stop.sh  //Stop service
 ```
-> After the service is running, use a browser to access: http://127.0.0.1:8086 Login to the system, default account password
+> After the service is running, use a browser to access: http://127.0.0.1:8086 Login to the system, default account password：admin/dbqueryadmin
 
 
 ### 🦄  Build deployment

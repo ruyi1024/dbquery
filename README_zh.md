@@ -1,10 +1,11 @@
 # [![pEl1emT.png](https://s21.ax1x.com/2025/02/22/pEl1emT.png)](https://imgse.com/i/pEl1emT)
 
 ## DBQuery：简洁、专业、安全的数据库查询管理平台
+DBQuery数据库查询平台，由LEPUS开源数据库监控系统(lepus.cc)作者开发，致力于打造简洁、智能、强大、安全的开源数据库一站式查询管理平台。
 
 [[**English**](README.md)] | [[**简体中文**](README_zh.md)]
 
-###  ✨ 简介：DBQuery数据库查询平台，由LEPUS开源数据库监控系统(lepus.cc)作者开发，致力于打造简洁、智能、强大、安全的开源数据库一站式查询管理平台。
+###  ✨ 特性：
 - 支持MySQL、Oracle、MariaDB、GreatSQL、PostgreSQL、Redis、MongoDB、SQLServer、TiDB、Doris、OceanBase、ClickHouse等各类数据库的SQL执行和数据查询。
 - 支持各类数据库的执行计划、索引、表结构、建表SQL、表容量等数据查询。
 - 支持各类数据库的的元数据信息自动采集和查询。
