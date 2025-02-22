@@ -1,11 +1,10 @@
-# ![DBQuery](./static/image/avatar.jpg)
+# ![DBQuery](./static/image/avatar.png)
 
 ## DBQuery：简洁、专业、安全的数据库查询管理平台
 
 [[**English**](README.md)] | [[**简体中文**](README_zh.md)]
 
-###  ✨ 简介
-DBQuery数据库查询平台，由LEPUS开源数据库监控系统(lepus.cc)作者开发，致力于打造简洁、智能、强大、安全的开源数据库一站式查询管理平台。
+###  ✨ 简介：DBQuery数据库查询平台，由LEPUS开源数据库监控系统(lepus.cc)作者开发，致力于打造简洁、智能、强大、安全的开源数据库一站式查询管理平台。
 - 支持MySQL、Oracle、MariaDB、GreatSQL、PostgreSQL、Redis、MongoDB、SQLServer、TiDB、Doris、OceanBase、ClickHouse等各类数据库的SQL执行和数据查询。
 - 支持各类数据库的执行计划、索引、表结构、建表SQL、表容量等数据查询。
 - 支持各类数据库的的元数据信息自动采集和查询。
@@ -88,10 +87,7 @@ $ npm start
 
 ## 🐳 关于技术支持申明
 - 本软件基于开源技术构建，使用Golang、Nodejs、Antd、MySQL等开源项目。 技术上如有问题，可以先向对应的开源社区请求帮助。
-- 开源不易，本人精力和时间有限，如需一对一技术支持，请先赞助后联系微信Ruyi-1024(备注 技术支持)：
-
-<img src="./static/image/wechat.jpg" width="301px" height="402px" alt="ArvinLovegood">
-
+- 开源不易，本人精力和时间有限，如需一对一技术支持，请先赞助后联系微信Ruyi-1024(备注DBQuery技术支持)：
 
 | 技术支持方式                          | 赞助(元) | 
 |:--------------------------------|:-----:|
