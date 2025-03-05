@@ -10,6 +10,7 @@ export default {
   'menu.privilege': '权限',
   'menu.audit': '审计',
   'menu.report': '报告',
+  'menu.ai': 'AI查询优化',
   'menu.monitor.event': '监控事件和图表',
   'menu.monitor.dashboard': '监控大盘',
   'menu.privilege.index': '已授权限查询',

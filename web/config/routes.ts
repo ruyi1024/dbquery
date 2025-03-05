@@ -23,6 +23,12 @@ export default [
     component: './execute/',
   },
   {
+    name: 'ai',
+    icon: 'ConsoleSqlOutlined',
+    path: '/ai/',
+    component: './ai/',
+  },
+  {
     name: 'meta',
     icon: 'database',
     path: '/meta',
@@ -132,7 +138,7 @@ export default [
       },
     ],
   },
-  
+
   {
     name: 'support',
     icon: 'BulbOutlined',
