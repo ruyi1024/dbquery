@@ -33,6 +33,7 @@ import (
 	"go.mongodb.org/mongo-driver/mongo/options"
 
 	"dbmcloud/src/database"
+	"dbmcloud/src/libary/ai"
 	"dbmcloud/src/libary/db"
 	"dbmcloud/src/libary/mongodb"
 	"dbmcloud/src/libary/redis"
@@ -81,6 +82,16 @@ func DoQuery(c *gin.Context) {
 		sqlType string
 	)
 
+	//AI执行转换
+	if queryType == "aiExecute" {
+		sql, err = ai.Text2SQL(sql)
+		if err != nil {
+			c.JSON(http.StatusOK, gin.H{"success": false, "msg": "AI执行转换失败."})
+			return
+		}
+		//fmt.Println("sql:", sql)
+	}
+
 	//执行SQL规则检查
 	if queryType == "execute" && (datasourceType == "MySQL" || datasourceType == "TiDB" || datasourceType == "Doris" || datasourceType == "MariaDB" || datasourceType == "GreatSQL" || datasourceType == "PostgreSQL" || datasourceType == "Oracle" || datasourceType == "ClickHouse") {
 		//语句合法性检查
@@ -104,7 +115,7 @@ func DoQuery(c *gin.Context) {
 		}
 
 	}
-	fmt.Println("000000")
+
 	//查询数据源
 	dbHostPort := strings.Split(datasource, ":")
 	host := dbHostPort[0]

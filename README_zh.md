@@ -1,12 +1,13 @@
 # [![pEl1emT.png](https://s21.ax1x.com/2025/02/22/pEl1emT.png)](https://imgse.com/i/pEl1emT)
 
-## DBQuery：简洁、专业、安全的数据库查询管理平台
+## DBQuery：简洁、专业、安全的AI数据库查询管理平台
 DBQuery数据库查询平台，由LEPUS开源数据库监控系统(lepus.cc)作者开发，致力于打造简洁、智能、强大、安全的开源数据库一站式查询管理平台。
 
 [[**English**](README.md)] | [[**简体中文**](README_zh.md)]
 
 ###  ✨ 特性：
 - 支持MySQL、Oracle、MariaDB、GreatSQL、PostgreSQL、Redis、MongoDB、SQLServer、TiDB、Doris、OceanBase、ClickHouse等各类数据库的SQL执行和数据查询。
+- 支持接入本地大模型（Ollama/Deepseek）通过。
 - 支持各类数据库的执行计划、索引、表结构、建表SQL、表容量等数据查询。
 - 支持各类数据库的的元数据信息自动采集和查询。
 - 支持自动发现高风险执行SQL并拦截。
@@ -86,7 +87,7 @@ $ npm start
 ### 都划到这了，如果我的项目对您有帮助，请赞助我吧！😊😊😊
 | 微信 | 支付宝  |
 |-----|-----| 
-| [![pEl1Kk4.jpg](https://s21.ax1x.com/2025/02/22/pEl1Kk4.jpg)](https://imgse.com/i/pEl1Kk4)  | [![pEl1Qh9.jpg](https://s21.ax1x.com/2025/02/22/pEl1Qh9.jpg)](https://imgse.com/i/pEl1Qh9) |
+| [![wxpay.jpg](./static/image/wxpay.jpg)](./static/image/wxpay.jpg)  | [![alipay.jpg](./static/image/alipay.jpg)](./static/image/alipay.jpg) |
 
 ## 🐳 关于技术支持申明
 - 本软件基于开源技术构建，使用Golang、Nodejs、Antd、MySQL等开源项目。 技术上如有问题，可以先向对应的开源社区请求帮助。

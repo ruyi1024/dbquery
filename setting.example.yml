@@ -20,3 +20,26 @@ dataSource:
   user: xxxxxx
   password: xxxxxx
   database: xxxxxx
+
+ai:
+  aiEnable: true
+  aiType: "ollama" #type: ollama or deepseek
+  #ollama
+  ollamaUrl: "http://localhost:11434"
+  ollamaModel: "deepseek-r1:7b"  
+  ollamaTemperature: 0.1  # 温度
+  ollamaTopP: 0.95  # 概率
+  ollamaTopK: 40  # 数量
+  ollamaRepeatPenalty: 1.1  # 惩罚
+  ollamaContextSize: 4096  # 上下文大小
+  ollamaMaxTokens: 2048  # 最大token数
+  #deepseek
+  deepseekApiKey: ""
+  deepseekModel: "deepseekR1"
+  deepseekTemperature: 0.1  # 温度
+  deepseekTopP: 0.95  # 概率
+  deepseekTopK: 40  # 数量
+  deepseekRepeatPenalty: 1.1  # 惩罚
+  deepseekContextSize: 4096  # 上下文大小
+  deepseekMaxTokens: 2048  # 最大token数
+  

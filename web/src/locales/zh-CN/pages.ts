@@ -194,6 +194,7 @@ export default {
   'pages.execute.close': '关闭',
   'pages.execute.refresh': '刷新',
   'pages.execute.executeSql': '执行语句',
+  'pages.execute.aiExecuteSql': 'AI执行语句',
   'pages.execute.showIndex': '查看表索引',
   'pages.execute.showExplain': '查看执行计划',
   'pages.execute.showCreate': '查看建表语句',

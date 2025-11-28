@@ -210,6 +210,7 @@ export default {
   'pages.execute.close': 'Close',
   'pages.execute.refresh': 'Refresh',
   'pages.execute.executeSql': 'Execute SQL',
+  'pages.execute.aiExecuteSql': 'AI Execute SQL',
   'pages.execute.showIndex': 'Show Index',
   'pages.execute.showExplain': 'Show Explain',
   'pages.execute.showCreate': 'Show Create',

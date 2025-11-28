@@ -32,6 +32,7 @@ type setting struct {
 	Notice     `yaml:"notice"`
 	Decrypt    `yaml:"decrypt"`
 	Token      `yaml:"token"`
+	Ai         `yaml:"ai"`
 }
 
 type Log struct {
@@ -55,6 +56,15 @@ type DataSource struct {
 	ClickhousePassword string `yaml:"clickhousePassword"`
 	ClickhouseDatabase string `yaml:"clickhouseDatabase"`
 	NsqServer          string `yaml:"nsqServer"`
+}
+
+type Ai struct {
+	AiEnable       string `yaml:"aiEnable"`
+	AiType         string `yaml:"aiType"`
+	OllamaUrl      string `yaml:"ollamaUrl"`
+	OllamaModel    string `yaml:"ollamaModel"`
+	DeepseekApiKey string `yaml:"deepseekApiKey"`
+	DeepseekModel  string `yaml:"deepseekModel"`
 }
 
 type Notice struct {

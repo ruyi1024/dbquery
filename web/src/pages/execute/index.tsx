@@ -601,7 +601,7 @@ const Index: React.FC = () => {
               <Form.Item wrapperCol={{ offset: 0, span: 16 }}>
                 <Space>
                   <Button type="primary" htmlType="submit" icon={<RightSquareOutlined />}>{<FormattedMessage id="pages.execute.executeSql" />}</Button>
-
+                  <Button type="primary" htmlType="button" icon={<RightSquareOutlined />} onClick={() => queryPost("aiExecute")}>{<FormattedMessage id="pages.execute.aiExecuteSql" />}</Button>
                   {(type == "MySQL" || type == "TiDB" || type == "Doris" || type == "MariaDB" || type == "GreatSQL" || type == "OceanBase") &&
                     <>
                       <Button type="default" htmlType="button" onClick={() => queryPost("doExplain")}>
